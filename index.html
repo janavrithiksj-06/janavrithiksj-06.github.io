@@ -4,1130 +4,658 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Analyst | Data Analytics & NLP Specialist</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ---------------- VARIABLES ---------------- */
+        :root {
+            --bg-dark: #0a0f1c;
+            --bg-card: rgba(30, 41, 59, 0.4);
+            --border-light: rgba(255, 255, 255, 0.08);
+            --primary: #06b6d4; /* Cyan */
+            --secondary: #8b5cf6; /* Violet */
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --glass: blur(12px) saturate(180%);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* GAP SETTING: 180px top/bottom = 360px gap */
+            --section-padding: 180px; 
         }
 
+        /* ---------------- RESET ---------------- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: #1a1a1a;
-            background: #0d1117;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.8;
             overflow-x: hidden;
+            position: relative;
         }
 
-        .animated-bg {
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        /* ---------------- BACKGROUND FX ---------------- */
+        .ambient-light {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, #0d1117 0%, #1a3a4a 50%, #0d1117 100%);
-        }
-
-        .animated-bg::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(34, 197, 94, 0.08) 0%, transparent 50%);
-            animation: moveGradient 20s ease infinite;
-        }
-
-        @keyframes moveGradient {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-50px, -50px); }
-        }
-
-        .header {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
             overflow: hidden;
+            background: var(--bg-dark);
+        }
+        
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            animation: float 15s infinite alternate;
         }
 
-        .header::before {
+        .blob-1 { width: 600px; height: 600px; background: var(--primary); top: -10%; left: -10%; }
+        .blob-2 { width: 700px; height: 700px; background: var(--secondary); bottom: -10%; right: -10%; animation-delay: -5s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 60px); }
+        }
+
+        /* ---------------- LAYOUT ---------------- */
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section { 
+            padding-top: var(--section-padding);
+            padding-bottom: var(--section-padding);
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        /* Divider line */
+        section::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
-            opacity: 0;
-            animation: pulseGlow 4s ease-in-out infinite;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 120px; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0.3;
+        }
+        section:last-child::after { display: none; }
+
+        /* ---------------- NAV ---------------- */
+        .nav-wrapper {
+            position: fixed; top: 25px; left: 0; width: 100%;
+            display: flex; justify-content: center; z-index: 1000;
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
+        nav {
+            background: rgba(10, 15, 28, 0.8);
+            backdrop-filter: var(--glass);
+            border: 1px solid var(--border-light);
+            padding: 14px 40px;
+            border-radius: 100px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .header-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
+        nav ul { display: flex; gap: 35px; }
+        
+        nav a {
+            font-size: 0.9rem; font-weight: 500; color: var(--text-muted);
+            transition: 0.3s;
+        }
+        nav a:hover { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.4); }
+
+        /* ---------------- HERO ---------------- */
+        .hero {
+            min-height: 100vh;
+            text-align: center;
+            padding-top: 120px;
         }
 
-        .header h1 {
-            font-size: 5.5em;
+        .hero h1 {
+            font-size: clamp(3.5rem, 8vw, 6rem); 
             font-weight: 800;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #fff 0%, #06b6d4 100%);
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #fff 20%, var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInScale 0.8s ease-out;
-            letter-spacing: -2px;
+            line-height: 1.1;
         }
 
-        .header .tagline {
-            font-size: 1.3em;
-            color: #06b6d4;
-            margin-bottom: 30px;
-            animation: fadeInUp 1s ease-out 0.2s both;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .header .subtitle {
-            font-size: 1.1em;
-            margin-bottom: 35px;
-            opacity: 0.85;
-            animation: fadeInUp 1s ease-out 0.4s both;
-            font-weight: 300;
-            line-height: 1.8;
-        }
+        .tagline { font-size: 1.5rem; color: var(--primary); font-weight: 600; margin-bottom: 15px; }
+        .subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px auto; }
 
         .cta-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.6s both;
+            display: flex; justify-content: center; gap: 20px; margin-top: 40px;
         }
 
-        .cta {
-            display: inline-block;
-            padding: 16px 40px;
-            background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 36px; border-radius: 50px; font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 1.05em;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
-            border: 2px solid transparent;
-            cursor: pointer;
+            box-shadow: 0 4px 25px rgba(6, 182, 212, 0.25);
         }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(6, 182, 212, 0.5); }
 
-        .cta:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(6, 182, 212, 0.6);
-        }
-
-        .cta-secondary {
-            background: transparent;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            box-shadow: none;
-        }
-
-        .cta-secondary:hover {
-            border-color: #06b6d4;
-            background: rgba(6, 182, 212, 0.1);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator::after {
-            content: '↓';
-            font-size: 2em;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .nav {
-            background: rgba(13, 17, 23, 0.85);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 18px 0;
-            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
-        }
-
-        .nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .nav li {
-            margin: 0 20px;
-        }
-
-        .nav a {
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 600;
-            font-size: 0.9em;
-            letter-spacing: 0.5px;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
-            transition: width 0.3s;
-        }
-
-        .nav a:hover {
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-light);
             color: #fff;
         }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
 
-        .nav a:hover::after {
+        /* ---------------- SECTIONS ---------------- */
+        .section-header { margin-bottom: 60px; }
+        .section-header h2 { font-size: 3rem; color: #fff; }
+        .section-header .line { width: 80px; height: 5px; background: var(--secondary); margin-top: 15px; border-radius: 4px; }
+
+        /* ---------------- ABOUT GRID (FIXED) ---------------- */
+        .about-grid { 
+            display: grid; 
+            /* MODIFIED: Changed from 1.4fr 1fr to 1.2fr 1fr to give the right side more width */
+            grid-template-columns: 1.2fr 1fr; 
+            gap: 60px; 
+            align-items: start; 
+        }
+
+        .about-text p { margin-bottom: 20px; color: var(--text-muted); font-size: 1.1rem; }
+        
+        .quick-facts { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border-light); 
+            padding: 40px; 
+            border-radius: 20px; 
+        }
+        
+        /* FIX FOR ROWS BREAKING */
+        .fact-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 15px 0; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            gap: 20px; 
+        }
+        
+        .fact-row span { 
+            color: var(--text-muted); 
+            white-space: nowrap; 
+            flex-shrink: 0; 
+        }
+        
+        .fact-row strong { 
+            color: #fff; 
+            text-align: right; 
+            line-height: 1.4;
+            /* Allow it to be wider */
             width: 100%;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 20px;
-        }
-
-        .section {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
+        /* ---------------- PROJECT CARDS ---------------- */
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 50px;
             margin-bottom: 50px;
-            padding: 80px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 0.8s;
-            position: relative;
-            overflow: hidden;
+            transition: var(--transition);
         }
+        .project-card:hover { border-color: rgba(6, 182, 212, 0.4); box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5); transform: translateY(-5px); }
+        
+        .card-header { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 20px; }
+        .card-header h3 { font-size: 1.8rem; color: #fff; }
+        .company-name { color: var(--primary); font-weight: 600; display: block; margin-top: 5px; }
+        .date { color: var(--text-muted); font-style: italic; font-size: 0.9rem; }
 
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.5), transparent);
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+        .tag { font-size: 0.8rem; padding: 6px 14px; border-radius: 20px; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); color: var(--primary); }
+
+        .detail-section h4 { color: #fff; margin: 20px 0 10px 0; font-size: 1.1rem; }
+        .detail-section p { color: var(--text-muted); margin-bottom: 15px; }
+        .detail-section ul { margin-left: 20px; }
+        .detail-section li { margin-bottom: 8px; color: var(--text-muted); list-style-type: disc; }
+
+        .impact-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+            border-left: 4px solid #22c55e;
+            padding: 20px; border-radius: 8px; margin-top: 30px;
         }
+        .impact-label { color: #22c55e; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 5px; }
+        .impact-text { color: #fff; font-weight: 500; }
 
-        .section h2 {
-            color: #fff;
-            margin-bottom: 50px;
-            font-size: 3em;
-            font-weight: 700;
-            background: linear-gradient(135deg, #fff 0%, #06b6d4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            display: inline-block;
+        /* ---------------- EDUCATION & SKILLS ---------------- */
+        .education-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .edu-card { background: var(--bg-card); padding: 35px; border-radius: 16px; border: 1px solid var(--border-light); }
+        .edu-card h3 { color: #fff; font-size: 1.3rem; }
+        .edu-card .school { color: var(--primary); font-weight: 600; display: block; margin: 5px 0 15px 0; }
+        
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .skill-box { background: var(--bg-card); padding: 35px; border-radius: 16px; border: 1px solid var(--border-light); }
+        .skill-box h3 { color: #fff; border-bottom: 1px solid var(--border-light); padding-bottom: 15px; margin-bottom: 20px; }
+        .skill-box li { color: var(--text-muted); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .skill-box li i { color: var(--secondary); font-size: 0.8rem; }
+
+        /* ---------------- CONTACT & COPY ---------------- */
+        .contact-box {
+            text-align: center; max-width: 800px; margin: 0 auto;
+            background: linear-gradient(135deg, rgba(30,41,59,0.5), rgba(15,23,42,0.8));
+            padding: 80px; border-radius: 40px; border: 1px solid var(--border-light);
         }
-
-        .section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
-            border-radius: 2px;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 60px;
-            align-items: start;
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .about-content p {
-            line-height: 1.9;
-            font-size: 1.1em;
+        
+        .email-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255,255,255,0.05);
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: 1px solid var(--border-light);
             margin-bottom: 20px;
         }
 
-        .quick-facts {
-            background: rgba(6, 182, 212, 0.12);
-            padding: 40px;
-            border-radius: 15px;
-            border: 1px solid rgba(6, 182, 212, 0.4);
-            backdrop-filter: blur(5px);
-        }
+        .email-text { color: #fff; font-size: 1.2rem; font-weight: 500; }
 
-        .quick-facts h3 {
-            color: #06b6d4;
-            margin-bottom: 30px;
-            font-size: 1.4em;
-            font-weight: 700;
+        .copy-btn {
+            background: var(--primary); border: none; width: 40px; height: 40px;
+            border-radius: 50%; color: #000; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.2s; font-size: 1rem;
         }
-
-        .quick-facts p {
-            margin-bottom: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1em;
-            line-height: 1.8;
+        .copy-btn:hover { transform: scale(1.1); background: #fff; }
+        
+        .tooltip {
+            position: absolute; background: #22c55e; color: white;
+            padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;
+            top: -40px; right: -10px; opacity: 0; transition: 0.3s;
+            pointer-events: none;
         }
+        .tooltip.show { opacity: 1; top: -50px; }
 
-        .quick-facts strong {
-            color: #fff;
-            font-weight: 600;
-        }
+        .social-icons { display: flex; justify-content: center; gap: 20px; margin-top: 40px; }
+        .social-btn { width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; transition: 0.3s; }
+        .social-btn:hover { background: var(--primary); color: #000; transform: scale(1.1); }
 
-        .metrics-grid {
-            display: none;
-        }
-
-        .metric {
-            text-align: center;
-        }
-
-        .metric-number {
-            font-size: 2.5em;
-            font-weight: 800;
-            color: #06b6d4;
-            margin-bottom: 8px;
-        }
-
-        .metric-label {
-            font-size: 0.95em;
-            color: rgba(255, 255, 255, 0.7);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .case-study {
-            margin-bottom: 60px;
-            padding: 50px;
-            border-radius: 15px;
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(59, 130, 246, 0.08) 100%);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .case-study::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.6s;
-        }
-
-        .case-study:hover {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
-            border-color: rgba(34, 197, 94, 0.6);
-            transform: translateY(-8px);
-        }
-
-        .case-study:hover::before {
-            left: 100%;
-        }
-
-        .case-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .case-title h3 {
-            color: #fff;
-            font-size: 1.8em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .case-company {
-            color: #06b6d4;
-            font-weight: 600;
-            font-size: 1.05em;
-        }
-
-        .case-date {
-            color: rgba(255, 255, 255, 0.5);
-            font-style: italic;
-            font-size: 0.95em;
-        }
-
-        .case-tags {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .tag {
-            background: rgba(6, 182, 212, 0.2);
-            color: #06b6d4;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 500;
-            border: 1px solid rgba(6, 182, 212, 0.4);
-        }
-
-        .case-body {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.85;
-        }
-
-        .case-body h4 {
-            color: #06b6d4;
-            margin-top: 25px;
-            margin-bottom: 12px;
-            font-size: 1.15em;
-            font-weight: 600;
-        }
-
-        .case-body ul {
-            margin-left: 20px;
-            margin-top: 12px;
-        }
-
-        .case-body li {
-            margin-bottom: 10px;
-            color: rgba(255, 255, 255, 0.75);
-        }
-
-        .impact-box {
-            background: rgba(6, 182, 212, 0.15);
-            padding: 25px;
-            border-radius: 12px;
-            margin-top: 25px;
-            border-left: 4px solid #06b6d4;
-        }
-
-        .impact-label {
-            color: #06b6d4;
-            font-weight: 600;
-            font-size: 0.95em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .impact-text {
-            color: #fff;
-            font-size: 1.1em;
-            font-weight: 600;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .skill-category {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
-            padding: 35px;
-            border-radius: 15px;
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .skill-category:hover::before {
-            left: 100%;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-6px);
-            border-color: rgba(34, 197, 94, 0.6);
-            box-shadow: 0 12px 35px rgba(34, 197, 94, 0.3);
-        }
-
-        .skill-category h3 {
-            color: #22c55e;
-            margin-bottom: 25px;
-            font-size: 1.4em;
-            font-weight: 700;
-        }
-
-        .skill-category ul {
-            list-style: none;
-        }
-
-        .skill-category li {
-            padding: 10px 0;
-            color: rgba(255, 255, 255, 0.8);
-            transition: all 0.3s;
-            font-size: 1.05em;
-        }
-
-        .skill-category li:hover {
-            color: #fff;
-            transform: translateX(8px);
-        }
-
-        .skill-category li:before {
-            content: "▹ ";
-            color: #06b6d4;
-            font-weight: bold;
-            margin-right: 8px;
-        }
-
-        .education-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 35px;
-            margin-bottom: 60px;
-        }
-
-        .education-card {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
-            padding: 40px;
-            border-radius: 15px;
-            border: 1px solid rgba(34, 197, 94, 0.4);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .education-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .education-card:hover::after {
-            opacity: 1;
-        }
-
-        .education-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 18px 45px rgba(34, 197, 94, 0.4);
-        }
-
-        .education-card h3 {
-            color: #fff;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-            font-weight: 700;
-        }
-
-        .education-card .school {
-            color: #22c55e;
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-size: 1.15em;
-        }
-
-        .education-card .degree {
-            color: rgba(255, 255, 255, 0.75);
-            margin-bottom: 12px;
-            font-size: 1.05em;
-        }
-
-        .education-card .date {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.95em;
-        }
-
-        .certifications {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 35px;
-        }
-
-        .cert-badge {
-            background: rgba(6, 182, 212, 0.12);
-            border: 2px solid rgba(6, 182, 212, 0.4);
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
-            color: #06b6d4;
-            font-weight: 600;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            font-size: 1.05em;
-        }
-
-        .cert-badge::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(6, 182, 212, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.4s, height 0.4s;
-        }
-
-        .cert-badge:hover::before {
-            width: 350px;
-            height: 350px;
-        }
-
-        .cert-badge:hover {
-            transform: translateY(-6px);
-            border-color: #06b6d4;
-            color: #fff;
-            box-shadow: 0 12px 35px rgba(6, 182, 212, 0.4);
-        }
-
-        .contact-info {
-            text-align: center;
-            font-size: 1.15em;
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .contact-info p {
-            margin: 20px 0;
-        }
-
-        .contact-info a {
-            color: #06b6d4;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .contact-info a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
-            transition: width 0.3s;
-        }
-
-        .contact-info a:hover::after {
-            width: 100%;
-        }
-
-        .contact-info a:hover {
-            color: #fff;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            background: rgba(6, 182, 212, 0.15);
-            border: 2px solid rgba(6, 182, 212, 0.4);
-            color: #06b6d4;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .social-link:hover {
-            background: #06b6d4;
-            border-color: #06b6d4;
-            color: white;
-            transform: translateY(-4px);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* ---------------- RESPONSIVE ---------------- */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 3.2em;
-            }
-
-            .header .subtitle {
-                font-size: 1em;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .section {
-                padding: 40px 25px;
-            }
-
-            .section h2 {
-                font-size: 2em;
-            }
-
-            .nav li {
-                margin: 5px 12px;
-            }
-
-            .education-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .case-study {
-                padding: 30px;
-            }
-
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .cta-group {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .cta {
-                width: 90%;
-                max-width: 300px;
-            }
+            :root { --section-padding: 100px; }
+            .hero h1 { font-size: 3rem; }
+            .about-grid, .education-grid, .skills-grid { grid-template-columns: 1fr; }
+            .nav-wrapper { bottom: 20px; top: auto; }
+            section { padding-left: 20px; padding-right: 20px; }
+            .cta-group { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .email-wrapper { flex-direction: column; width: 100%; padding: 20px; }
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        ::selection {
-            background: rgba(147, 51, 234, 0.5);
-            color: white;
-        }
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-<body>
-    <div class="animated-bg"></div>
 
-    <div class="header">
-        <div class="header-content">
-            <h1>Janav Rithik Sudha Jaya Mohan</h1>
-            <p class="tagline">Business Analyst | Data Analytics Specialist</p>
-            <p class="subtitle">MSc Graduate in Business Administration (Business Analytics).</p>
+<body>
+
+    <div class="ambient-light">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="nav-wrapper">
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Work</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <section class="hero container">
+        <div class="reveal">
+            <h1>
+                Janav Rithik<br>
+                Sudha Jaya Mohan
+            </h1>
+            <div class="tagline">Business Analyst | Data Analytics Specialist</div>
+            <div class="subtitle">MSc Graduate in Business Administration, with a specialization in Business Analytics combining technical rigor with business strategy to transform complex data into decisions.</div>
+            
             <div class="cta-group">
-                <a href="#projects" class="cta">View My Work</a>
-                <a href="#contact" class="cta cta-secondary">Get in Touch</a>
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
             </div>
         </div>
-        <div class="scroll-indicator"></div>
-    </div>
+    </section>
 
-    <nav class="nav">
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Featured Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div class="container">
-        <section id="about" class="section">
+    <section id="about" class="container">
+        <div class="section-header reveal">
             <h2>About Me</h2>
-            <div class="about-content">
-                <div>
-                    <p>
-                        I'm a business analyst and data specialist for transforming complex data into actionable insights that drive strategic decision-making. I have completed my MSc in Business Administration with a specialization in Business Analytics at TIAS School for Business and Society, I combine technical rigor with strong business acumen.
-                    </p>
-                    <p>
-                        My expertise spans <strong>interactive dashboarding</strong>, and <strong>data visualization</strong> using tools like Tableau, SQL, Python. I've worked on a thesis project to analyze 21,000+ customer reviews, projects in my internship to build supply chain optimization dashboards, and delivering insights that support business growth in financial services and beyond.
-                    </p>
-                    <p>
-                        I'm driven by the intersection of business problems and data solutions, finding the signal in the noise to tell stories that matter.
-                    </p>
+            <div class="line"></div>
+        </div>
+
+        <div class="about-grid reveal">
+            <div class="about-text">
+                <p>I am a business analyst and data specialist focused on transforming complex data into actionable insights that drive strategic decision-making. I recently completed my MSc in Business Administration with a specialization in Business Analytics at TIAS School for Business and Society.</p>
+                <p>My expertise spans <strong>interactive dashboarding</strong> and <strong>data visualization</strong> using tools like Tableau, SQL, and Python. I've worked on a thesis project to analyze 21,000+ customer reviews using NLP, built supply chain optimization dashboards during my internship, and delivered insights supporting business growth.</p>
+                <p>I am driven by the intersection of business problems and data solutions, finding the signal in the noise to tell stories that matter.</p>
+            </div>
+
+            <div class="quick-facts">
+                <div class="fact-row">
+                    <span>📍 Location</span>
+                    <strong>Amstelveen, Netherlands</strong>
                 </div>
-                <div class="quick-facts">
-                    <h3>At a Glance</h3>
-                    <p><strong>📍 Location:</strong> Netherlands</p>
-                    <p><strong>🎓 Education:</strong> MSc Business Admin (TIAS) • BCom (Christ University)</p>
-                    <p><strong>🌍 Languages:</strong> English • Tamil • (Learning Dutch)</p>
-                    <p><strong>🏆 Award:</strong> TIAS Team Work Scholarship Recipient</p>
-                    <div class="metrics-grid">
-                        <div class="metric">
-                            <div class="metric-number">21K+</div>
-                            <div class="metric-label">Reviews Analyzed</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-number">98%</div>
-                            <div class="metric-label">ML Accuracy</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-number">6+</div>
-                            <div class="metric-label">Tools Mastered</div>
-                        </div>
-                    </div>
+                <div class="fact-row">
+                    <span>🎓 Education</span>
+                    <strong>MSc Business Admin (TIAS)</strong>
+                </div>
+                <div class="fact-row">
+                    <span>🌍 Languages</span>
+                    <strong>English, Tamil, Dutch (Learning)</strong>
+                </div>
+                <div class="fact-row">
+                    <span>🏆 Award</span>
+                    <strong style="color:var(--primary)">TIAS Team Work Scholarship</strong>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="projects" class="section">
+    <section id="projects" class="container">
+        <div class="section-header reveal">
             <h2>Featured Projects</h2>
+            <div class="line"></div>
+        </div>
 
-            <div class="case-study">
-                <div class="case-header">
-                    <div class="case-title">
-                        <h3>Master's Thesis: Text Analytics of Online Banking Reviews</h3>
-                        <p class="case-company">TIAS School for Business and Society</p>
-                    </div>
-                    <p class="case-date">Jun. 2025 - Aug. 2025</p>
+        <div class="project-card reveal">
+            <div class="card-header">
+                <div>
+                    <h3>Text Analysis of Online Banking Reviews </h3>
+                    <span class="company-name">Master's Thesis @ TIAS School for Business and Society</span>
                 </div>
-                <div class="case-tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">NLP</span>
-                    <span class="tag">Sentiment Analysis</span>
-                    <span class="tag">TF-IDF</span>
-                    <span class="tag">Regression</span>
-                </div>
-                <div class="case-body">
-                    <h4>Challenge</h4>
-                    <p>Understand key drivers of customer satisfaction in online banking to help financial institutions prioritize service improvements and enhance customer retention.</p>
-                    
-                    <h4>Approach</h4>
-                    <ul>
-                        <li>Collected and analyzed <strong>21,000+ customer reviews</strong> across multiple banking platforms</li>
-                        <li>Implemented NLP pipeline: tokenization, lemmatization, and TF-IDF feature extraction using NLTK and scikit-learn</li>
-                        <li>Applied sentiment analysis using VADER and advanced emotion lexicons (NRC) to detect nuanced customer sentiments</li>
-                        <li>Built regression models (OLS, Linear Regression) to identify statistical relationships between review aspects and satisfaction scores</li>
-                        <li>Visualized key themes and trends with matplotlib and seaborn for stakeholder communication</li>
-                    </ul>
-
-                    <h4>Results & Impact</h4>
-                    <div class="impact-box">
-                        <div class="impact-label">Key Finding</div>
-                        <div class="impact-text">Identified 5 primary service drivers (security, user experience, support, fees, innovation) explaining 68% of satisfaction variance, enabling targeted improvement roadmap.</div>
-                    </div>
-                    <ul>
-                        <li>Delivered actionable insights that help banks focus engineering and service redesign efforts on high-impact areas</li>
-                        <li>Demonstrated advanced NLP and statistical modeling skills applicable to customer feedback analysis in financial services</li>
-                        <li>Thesis defended and graded for excellence in research methodology and business relevance</li>
-                    </ul>
-                </div>
+                <span class="date">Jun 2025 - Aug 2025</span>
             </div>
 
-            <div class="case-study">
-                <div class="case-header">
-                    <div class="case-title">
-                        <h3>Business Analyst Internship: Supply Chain Optimization Dashboard</h3>
-                        <p class="case-company">KRAMP | Supply Chain Intelligence</p>
-                    </div>
-                    <p class="case-date">Sep. 2025 - Dec. 2025</p>
-                </div>
-                <div class="case-tags">
-                    <span class="tag">Tableau</span>
-                    <span class="tag">SQL</span>
-                    <span class="tag">BigQuery</span>
-                    <span class="tag">Dashboard Design</span>
-                    <span class="tag">Stakeholder Management</span>
-                </div>
-                <div class="case-body">
-                    <h4>Challenge</h4>
-                    <p>Supply chain specialists lacked visibility into Minimum Order Quantity (MOQ) optimization across suppliers, limiting their ability to negotiate MOQs with suppliers.</p>
-                    
-                    <h4>Approach</h4>
-                    <ul>
-                        <li>Designed and built an <strong>interactive Tableau dashboard</strong> pulling real-time data from Google BigQuery</li>
-                        <li>Engineered SQL queries to aggregate supplier performance and MOQ policies</li>
-                        <li>Implemented dynamic filters enabling specialists to explore supplier-specific situations and identify overstock scenarios</li>
-                    </ul>
-
-                    <h4>Results & Impact</h4>
-                    <div class="impact-box">
-                        <div class="impact-label">Outcome</div>
-                        <div class="impact-text">Dashboard was presented to the supply chain team to manage supplier relationships more efficiently and optimize MOQs.</div>
-                    </div>
-                    <ul>
-                        <li>Gained hands-on experience in modern BI stack (Tableau, BigQuery, SQL) used by enterprise supply chain organizations</li>
-                        <li>Strengthened data storytelling and stakeholder communication skills through presentation of findings to cross-functional teams</li>
-                        <li>Positioned as go-to analyst for dashboard improvements and data-driven supply chain questions</li>
-                    </ul>
-                </div>
+            <div class="tags">
+                <span class="tag">Python (NLTK)</span>
+                <span class="tag">TF-IDF</span>
+                <span class="tag">Sentiment Analysis</span>
+                <span class="tag">Regression (OLS)</span>
             </div>
 
-            <div class="case-study">
-                <div class="case-header">
-                    <div class="case-title">
-                        <h3>FIFA Player Growth & Market Balance Analytics</h3>
-                        <p class="case-company">TIAS Business Data Analytics Course | Team Project (5 members)</p>
-                    </div>
-                    <p class="case-date">Feb. 2025</p>
-                </div>
-                <div class="case-tags">
-                    <span class="tag">Data Analysis</span>
-                    <span class="tag">Predictive Modeling</span>
-                    <span class="tag">Visualization</span>
-                    <span class="tag">Team Collaboration</span>
-                </div>
-                <div class="case-body">
-                    <h4>Challenge</h4>
-                    <p>Analyze historical FIFA player data to uncover growth patterns and recommend scouting strategies for talent acquisition and roster balance.</p>
-                    
-                    <h4>Approach</h4>
-                    <ul>
-                        <li>Analyzed <strong>17,954 SoFIFA records</strong> spanning multiple seasons to identify player development trajectories</li>
-                        <li>Built predictive models: <strong>Regression (R² = 0.785)</strong> and <strong>Deep Learning (98% accuracy)</strong> for player growth forecasting</li>
-                        <li>Designed interactive visualizations showing age-performance curves, market position clustering, and scouting recommendations</li>
-                        <li>Collaborated with 4 team members, managing workflow and synthesizing diverse analytical perspectives</li>
-                    </ul>
-
-                    <h4>Results & Impact</h4>
-                    <div class="impact-box">
-                        <div class="impact-label">Key Metric</div>
-                        <div class="impact-text">Delivered scouting recommendations with 98% model accuracy, enabling data-driven player acquisition decisions.</div>
-                    </div>
-                    <ul>
-                        <li>Demonstrated strong teamwork and ability to synthesize complex analysis into actionable business recommendations</li>
-                        <li>Showcased predictive modeling depth (regression + deep learning) and visualization skills for non-technical audiences</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience" class="section">
-            <h2>Professional Experience</h2>
-
-            <div class="case-study">
-                <div class="case-header">
-                    <div class="case-title">
-                        <h3>Business Analyst Intern</h3>
-                        <p class="case-company">KRAMP, Utrecht, Netherlands</p>
-                    </div>
-                    <p class="case-date">Sep. 2025 - Dec. 2025</p>
-                </div>
-                <ul style="margin-top: 20px; color: rgba(255, 255, 255, 0.8);">
-                    <li>Built Tableau dashboards connected to Google BigQuery for supply chain optimization and MOQ management</li>
-                    <li>Conducted analytics on demand forecasting, identifying key improvement areas for demand planners</li>
-                    <li>Extracted and validated dealer potential data, ensuring accuracy and timeliness for reporting</li>
-                    <li>Collaborated with supply chain specialists and demand planners to understand pain points and design solutions</li>
+            <div class="detail-section">
+                <h4>Challenge</h4>
+                <p>Identify the key service and emotional factors influencing customer satisfaction in digital banking using large-scale online reviews.</p>
+                
+                <h4>Approach</h4>
+                <ul>
+                    <li>Collected and analyzed <strong>21,956 reviews</strong> from Trustpilot via Kaggle.</li>
+                    <li>Implemented a pipeline with <strong>TF-IDF feature extraction</strong> and lexicon-based analysis (NRC Emotion Lexicon).</li>
+                    <li>Built OLS regression models to quantify the impact of specific emotions (Joy, Trust, Anger) on star ratings.</li>
                 </ul>
             </div>
 
-            <div class="case-study">
-                <div class="case-header">
-                    <div class="case-title">
-                        <h3>Finance & Accounting Intern</h3>
-                        <p class="case-company">KPM Processing Mill Private Limited, Tiruppur, India</p>
-                    </div>
-                    <p class="case-date">Jun. 2022 - Jul. 2022</p>
+            <div class="impact-box">
+                <div class="impact-label">Key Result</div>
+                <div class="impact-text">Emotional sentiment factors explained ~49.7% of customer satisfaction variance, proving emotions predict churn better than service keywords alone.</div>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="card-header">
+                <div>
+                    <h3>Supply Chain Optimization Dashboard </h3>
+                    <span class="company-name">Internship @ KRAMP</span>
                 </div>
-                <ul style="margin-top: 20px; color: rgba(255, 255, 255, 0.8);">
-                    <li>Prepared weekly financial and accounting reports supporting executive decision-making</li>
-                    <li>Recorded and reconciled accounting entries using Tally Accounting software</li>
-                    <li>Audited past entries and identified discrepancies, maintaining 100% accuracy in financial records</li>
+                <span class="date">Sep 2025 - Dec 2025</span>
+            </div>
+
+            <div class="tags">
+                <span class="tag">Tableau Desktop</span>
+                <span class="tag">SQL</span>
+                <span class="tag">Google BigQuery</span>
+                <span class="tag">Stakeholder Mgmt</span>
+            </div>
+
+            <div class="detail-section">
+                <h4>Challenge</h4>
+                <p>Supply chain specialists lacked visibility into Minimum Order Quantity (MOQ) optimization across suppliers, making negotiation difficult.</p>
+                
+                <h4>Approach</h4>
+                <ul>
+                    <li>Designed an interactive Tableau dashboard pulling real-time data from BigQuery.</li>
+                    <li>Engineered SQL queries to aggregate supplier performance metrics.</li>
+                    <li>Implemented dynamic filters to identify overstock scenarios and negotiation opportunities.</li>
                 </ul>
             </div>
-        </section>
 
-        <section id="education" class="section">
+            <div class="impact-box">
+                <div class="impact-label">Key Result</div>
+                <div class="impact-text">Adopted by the supply chain team to manage supplier relationships and optimize MOQs, directly improving inventory efficiency.</div>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="card-header">
+                <div>
+                    <h3>FIFA Player Growth Analytics </h3>
+                    <span class="company-name">Team Project @ TIAS</span>
+                </div>
+                <span class="date">Feb 2025</span>
+            </div>
+
+            <div class="tags">
+                <span class="tag">Deep Learning</span>
+                <span class="tag">Predictive Modeling</span>
+                <span class="tag">Visualization</span>
+            </div>
+
+            <div class="detail-section">
+                <h4>Challenge</h4>
+                <p>Analyze historical FIFA player data to uncover growth patterns and recommend scouting strategies for talent acquisition.</p>
+                
+                <h4>Approach</h4>
+                <ul>
+                    <li>Analyzed 17,954 SoFIFA records spanning multiple seasons to map player trajectories.</li>
+                    <li>Built Deep Learning models achieving <strong>98% accuracy</strong> for growth forecasting.</li>
+                    <li>Designed visualizations for age-performance curves and market positioning.</li>
+                </ul>
+            </div>
+
+            <div class="impact-box">
+                <div class="impact-label">Key Result</div>
+                <div class="impact-text">Delivered scouting recommendations enabling data-driven acquisition decisions with high predictive confidence.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="container">
+        <div class="section-header reveal">
+            <h2>Experience</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="education-grid reveal">
+            <div class="edu-card">
+                <h3>Business Analyst Intern</h3>
+                <span class="school">KRAMP | Netherlands</span>
+                <span class="date">Sep 2025 - Dec 2025</span>
+                <ul style="margin-top:15px; color:var(--text-muted); padding-left:20px; font-size:0.95rem;">
+                    <li>Built Tableau dashboards via BigQuery for supply chain optimization.</li>
+                    <li>Conducted demand forecasting analytics to assist planners.</li>
+                    <li>Extracted and validated dealer potential data for accuracy.</li>
+                    <li>Collaborated with supply chain specialists to define requirements.</li>
+                </ul>
+            </div>
+
+            <div class="edu-card">
+                <h3>Finance & Accounting Intern</h3>
+                <span class="school">KPM Processing Mill | India</span>
+                <span class="date">Jun 2022 - Jul 2022</span>
+                <ul style="margin-top:15px; color:var(--text-muted); padding-left:20px; font-size:0.95rem;">
+                    <li>Prepared weekly financial reports for executive decision-making.</li>
+                    <li>Reconciled accounting entries using <strong>Tally ERP</strong>.</li>
+                    <li>Audited past entries and identified discrepancies with 100% accuracy.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="container">
+        <div class="section-header reveal">
+            <h2>Skills & Tools</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="skills-grid reveal">
+            <div class="skill-box">
+                <h3><i class="fas fa-chart-line"></i> Analytics & BI</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Tableau (Desktop & Prep)</li>
+                    <li><i class="fas fa-check"></i> Dashboard Design 
+
+[Image of Business Analytics Dashboard]
+</li>
+                    <li><i class="fas fa-check"></i> Exploratory Data Analysis (EDA)</li>
+                    <li><i class="fas fa-check"></i> Statistical Analysis</li>
+                </ul>
+            </div>
+
+            <div class="skill-box">
+                <h3><i class="fas fa-brain"></i> NLP & Python</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Sentiment Analysis (VADER, NRC)</li>
+                    <li><i class="fas fa-check"></i> Keyword Extraction (YAKE)</li>
+                    <li><i class="fas fa-check"></i> Text Preprocessing & TF-IDF</li>
+                    <li><i class="fas fa-check"></i> Python (Pandas, NLTK)</li>
+                </ul>
+            </div>
+
+            <div class="skill-box">
+                <h3><i class="fas fa-database"></i> Data Management</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> SQL (Querying & Aggregation)</li>
+                    <li><i class="fas fa-check"></i> Google BigQuery</li>
+                    <li><i class="fas fa-check"></i> Excel (Advanced)</li>
+                    <li><i class="fas fa-check"></i> Tally ERP (Accounting)</li>
+                </ul>
+            </div>
+
+            <div class="skill-box">
+                <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                <ul>
+                    <li><i class="fas fa-award"></i> IBM watsonx Designer</li>
+                    <li><i class="fas fa-award"></i> Google Data Foundations</li>
+                    <li><i class="fas fa-award"></i> Banking & Financial Inst.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="container">
+        <div class="section-header reveal">
             <h2>Education</h2>
-            
-            <div class="education-grid">
-                <div class="education-card">
-                    <h3>MSc Business Administration</h3>
-                    <p class="school">TIAS School for Business and Society</p>
-                    <p class="degree">Specialization: Business Analytics</p>
-                    <p class="date">Sep. 2024 - Dec. 2025 | Utrecht, Netherlands</p>
-                </div>
-                <div class="education-card">
-                    <h3>Bachelor of Commerce</h3>
-                    <p class="school">Christ University</p>
-                    <p class="degree">Specialization: Banking & Insurance</p>
-                    <p class="date">Jun. 2020 - May 2023 | Bengaluru, India</p>
-                </div>
-            </div>
+            <div class="line"></div>
+        </div>
 
-            <h3 style="color: #06b6d4; font-size: 1.8em; margin-bottom: 30px; margin-top: 20px;">Certifications & Training</h3>
-            <div class="certifications">
-                <div class="cert-badge">IBM watsonx Designer</div>
-                <div class="cert-badge">Google Data Foundations</div>
-                <div class="cert-badge">Data Cleaning & Preparation</div>
-                <div class="cert-badge">Banking & Financial Institutions</div>
-                <div class="cert-badge">Soft Skills Development (NPTEL)</div>
-                <div class="cert-badge">Insurance Licentiate (IICL)</div>
+        <div class="education-grid reveal">
+            <div class="edu-card">
+                <h3>MSc Business Administration</h3>
+                <span class="school">TIAS School for Business and Society</span>
+                <p>Specialization: Business Analytics</p>
+                <p style="font-size:0.9rem; margin-top:5px; opacity:0.7;">Sep 2024 - Dec 2025 | Netherlands</p>
             </div>
-        </section>
-
-        <section id="skills" class="section">
-            <h2>Skills & Expertise</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Data & Analytics</h3>
-                    <ul>
-                        <li>Tableau & Data Visualization</li>
-                        <li>SQL & Google BigQuery</li>
-                        <li>Python & Pandas (Basic)</li>
-                        <li>Dashboard Design & BI</li>
-                        <li>Data Cleaning & Preparation</li>
-                        <li>Statistical Analysis</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>NLP & Text Analytics</h3>
-                    <ul>
-                        <li>Sentiment Analysis (VADER, NRC)</li>
-                        <li>Natural Language Processing (NLTK)</li>
-                        <li>Feature Extraction (TF-IDF)</li>
-                        <li>Text Classification</li>
-                        <li>Emotion Detection</li>
-                        <li>Keyword Extraction (YAKE)</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Modeling & Business Logic</h3>
-                    <ul>
-                        <li>Regression Analysis (OLS)</li>
-                        <li>Predictive Modeling</li>
-                        <li>Process Optimization</li>
-                        <li>Stakeholder Management</li>
-                        <li>Requirements Gathering</li>
-                        <li>Business Case Development</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools & Platforms</h3>
-                    <ul>
-                        <li>Tableau Desktop & Prep Builder</li>
-                        <li>SQL (SQL Server, Standard SQL)</li>
-                        <li>Google BigQuery</li>
-                        <li>Jupyter Lab & Python (Basic)</li>
-                        <li>Microsoft Excel</li>
-                        <li>Microsoft Powerpoint</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Business & Soft Skills</h3>
-                    <ul>
-                        <li>Problem-Solving & Analytical Thinking</li>
-                        <li>Data Storytelling</li>
-                        <li>Stakeholder Communication</li>
-                        <li>Cross-Functional Collaboration</li>
-                        <li>Project Management</li>
-                        <li>Strategic Thinking</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Domain Knowledge</h3>
-                    <ul>
-                        <li>Financial Services & Banking</li>
-                        <li>Supply Chain Analytics</li>
-                        <li>Customer Experience Analysis</li>
-                        <li>Market Research</li>
-                        <li>Demand Forecasting</li>
-                        <li>Business Intelligence</li>
-                    </ul>
-                </div>
+            <div class="edu-card">
+                <h3>Bachelor of Commerce</h3>
+                <span class="school">Christ University</span>
+                <p>Specialization: Banking & Insurance</p>
+                <p style="font-size:0.9rem; margin-top:5px; opacity:0.7;">Jun 2020 - May 2023 | India</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="section">
+    <section id="contact" class="container">
+        <div class="contact-box reveal">
             <h2>Let's Connect</h2>
-            <div class="contact-info">
-                <p style="font-size: 1.15em; line-height: 1.8;">
-                    I'm actively seeking entry-level Business Analyst and Data Analytics roles in the Netherlands. Whether you'd like to discuss analytics projects, explore collaboration opportunities, or just chat about data and insights, I'd love to hear from you.
-                </p>
-                <p style="margin-top: 35px; margin-bottom: 15px;">
-                    <strong>📧 Email:</strong> <a href="mailto:janavrithiksj@gmail.com">janavrithiksj@gmail.com</a>
-                </p>
-                </p>
-                <p style="margin-bottom: 15px;">
-                    <strong>💼 LinkedIn:</strong> <a href="https://www.linkedin.com/in/janav-rithik-1502421b3/" target="_blank">https://www.linkedin.com/in/janav-rithik-1502421b3/</a>
-                </p>
-                <p style="margin-bottom: 35px;">
-                    <strong>📍 Location:</strong> Amstelveen, Netherlands
-                </p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/janav-rithik-1502421b3/" class="social-link" target="_blank" title="LinkedIn">in</a>
-                    <a href="mailto:janavrithiksj@gmail.com" class="social-link" title="Email">✉</a>
-                </div>
+            <p style="margin: 20px 0; color: var(--text-muted);">
+                I am actively seeking entry-level roles in the Netherlands. 
+                Whether you'd like to discuss analytics projects or explore collaboration, I'd love to hear from you.
+            </p>
+            
+            <div class="email-wrapper" style="position: relative; display: inline-flex;">
+                <i class="fas fa-envelope" style="color:var(--primary)"></i>
+                <span class="email-text" id="emailToCopy">janavrithiksj@gmail.com</span>
+                
+                <button class="copy-btn" onclick="copyEmail()" aria-label="Copy Email">
+                    <i class="fas fa-copy"></i>
+                </button>
+                <div class="tooltip" id="copyTooltip">Copied!</div>
             </div>
-        </section>
-    </div>
+
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/janav-rithik-1502421b3/" target="_blank" class="social-btn" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                
+                <a href="mailto:janavrithiksj@gmail.com" class="social-btn" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+    </section>
+
+    <script>
+        // Scroll Reveal
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 100;
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        reveal();
+
+        // Email Copy Function
+        function copyEmail() {
+            var emailText = document.getElementById("emailToCopy").innerText;
+            var tooltip = document.getElementById("copyTooltip");
+
+            navigator.clipboard.writeText(emailText).then(function() {
+                tooltip.classList.add("show");
+                setTimeout(function(){
+                    tooltip.classList.remove("show");
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>

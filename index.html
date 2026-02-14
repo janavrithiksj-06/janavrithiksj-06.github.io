@@ -1606,18 +1606,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Janav Rithik Sudha Jaya Mohan. All rights reserved.</p>
-        </div>
-    </footer>
-
     <!-- Back to Top -->
-    <a href="#" class="back-to-top" id="backToTop">
+    <a class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </a>
 
+    
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <img src="" alt="Full size image" id="lightboxImg">
@@ -1628,18 +1622,23 @@
         const navToggle = document.querySelector('.nav-toggle');
         const navMenu = document.querySelector('.nav-menu');
         const navLinks = document.querySelectorAll('.nav-link');
-
+    
         navToggle.addEventListener('click', () => {
             navToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navToggle.classList.remove('active');
-                navMenu.classList.remove('active');
+    
+        // 👇 ADD IT HERE
+        const backToTopBtn = document.getElementById('backToTop');
+    
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
-        });
+        }
 
         // Active navigation on scroll
         window.addEventListener('scroll', () => {

@@ -162,10 +162,13 @@
         .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--primary); transform: translateY(-3px); }
 
         /* ---------------- SECTIONS ---------------- */
-        .section-header { margin-bottom: 100px; text-align: center; }
+        .section-header { margin-bottom: 70px; text-align: center; } /* Decreased gap after title */
         .section-header h2 { font-size: 3.5rem; color: #fff; display: inline-block; }
         .section-header .line { width: 0; height: 4px; background: var(--secondary); margin: 20px auto; border-radius: 4px; transition: width 1s ease-out; }
         .section-header.active .line { width: 80px; }
+
+        /* Space Adjustment for Projects Section */
+        #projects { margin-top: 50px; }
 
         /* ---------------- ABOUT ---------------- */
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
@@ -182,16 +185,8 @@
         .fact-row span { color: var(--text-muted); white-space: nowrap; flex-shrink: 0; font-size: 1rem; }
         .fact-row strong { color: #fff; text-align: right; line-height: 1.4; width: 100%; font-size: 0.95rem; white-space: nowrap; }
 
-        /* ---------------- VALUE PROP ---------------- */
-        .value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px; }
-        .value-card { background: var(--bg-card); padding: 45px 35px; border-radius: 24px; border: 1px solid var(--border-light); text-align: center; transition: 0.3s; position: relative; overflow: hidden; }
-        .value-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 40px rgba(6, 182, 212, 0.15); }
-        .value-icon { width: 80px; height: 80px; background: rgba(6, 182, 212, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px auto; font-size: 2rem; color: var(--primary); }
-        .value-card h3 { font-size: 1.5rem; color: #fff; margin-bottom: 15px; }
-        .value-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
-
         /* ---------------- PROJECTS ---------------- */
-        .filter-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 60px; flex-wrap: wrap; }
+        .filter-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; } /* Decreased gap */
         .filter-btn {
             background: rgba(255,255,255,0.05); border: 1px solid var(--border-light);
             padding: 10px 25px; border-radius: 50px; color: var(--text-muted); font-weight: 600;
@@ -203,7 +198,7 @@
             background: var(--bg-card); border: 1px solid var(--border-light);
             border-radius: 24px; padding: 60px; margin-bottom: 80px;
             transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease, opacity 0.3s, display 0.3s; 
-            transform-style: preserve-3d; perspective: 1500px;
+            transform-style: preserve-3d; perspective: 1450px; /* Barely steeper than original 1500px */
             position: relative; overflow: hidden;
         }
         .tilt-card::before { content: ""; position: absolute; height: 100%; width: 100%; left: 0; top: 0; background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%); z-index: 1; opacity: 0; transition: opacity 0.5s; pointer-events: none; }
@@ -211,18 +206,19 @@
         .tilt-card:hover { border-color: rgba(6, 182, 212, 0.4); box-shadow: 0 20px 50px -10px rgba(6, 182, 212, 0.1); }
         .card-content { position: relative; z-index: 2; pointer-events: auto; }
 
-        .card-header { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 25px; transform: translateZ(20px); pointer-events: none; }
+        /* Only +2px translation above your original for a very delicate lift */
+        .card-header { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 25px; transform: translateZ(22px); pointer-events: none; }
         .card-header h3 { font-size: 2.2rem; color: #fff; }
         .company-name { color: var(--primary); font-weight: 600; display: block; margin-top: 8px; font-size: 1.1rem; }
         .date { color: var(--text-muted); font-style: italic; font-size: 1rem; }
-        .tags { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; transform: translateZ(20px); }
+        .tags { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; transform: translateZ(22px); }
         .tag { font-size: 0.9rem; padding: 8px 18px; border-radius: 20px; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); color: var(--primary); }
-        .detail-section { transform: translateZ(10px); }
+        .detail-section { transform: translateZ(12px); }
         .detail-section h4 { color: var(--primary); margin: 30px 0 15px 0; font-size: 1.25rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
         .detail-section p { color: var(--text-muted); margin-bottom: 20px; font-size: 1.1rem; }
         .detail-section ul { margin-left: 20px; }
         .detail-section li { margin-bottom: 10px; color: var(--text-muted); list-style-type: disc; font-size: 1.05rem; }
-        .impact-box { background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05)); border-left: 4px solid #22c55e; padding: 25px; border-radius: 8px; margin-top: 40px; transform: translateZ(25px); }
+        .impact-box { background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05)); border-left: 4px solid #22c55e; padding: 25px; border-radius: 8px; margin-top: 40px; transform: translateZ(28px); }
         .impact-label { color: #22c55e; font-weight: 800; text-transform: uppercase; font-size: 1rem; letter-spacing: 1.5px; margin-bottom: 8px; }
         .impact-text { color: #fff; font-weight: 600; font-size: 1.15rem; }
 
@@ -245,7 +241,7 @@
             overflow: hidden;
             border: 1px solid var(--border-light);
             background: #020617;
-            transform: translateZ(15px);
+            transform: translateZ(22px); 
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
@@ -415,7 +411,7 @@
 
         .reveal { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: background: linear-gradient(90deg, var(--primary), var(--secondary)); z-index: 9999; box-shadow: 0 0 15px var(--primary); transition: width 0.1s; }
+        .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, var(--primary), var(--secondary)); z-index: 9999; box-shadow: 0 0 15px var(--primary); transition: width 0.1s; }
     </style>
 </head>
 
@@ -480,7 +476,7 @@
             <div class="about-text">
                 <div class="profile-wrapper"><img src="assets/profile.jpg" alt="Profile Photo" class="profile-img"></div>
                 <p>I am a business analyst and data specialist focused on transforming complex data into actionable insights that drive strategic decision-making. I recently completed my MSc in Business Administration with a specialization in Business Analytics at TIAS School for Business and Society.</p>
-                <p>My expertise spans <strong>interactive dashboarding</strong> and <strong>data visualization</strong> using tools like Tableau, SQL, and Python. I've worked on a thesis project to analyze 21,000+ customer reviews using NLP, built supply chain optimization dashboards during my internship, and delivered insights supporting business growth.</p>
+                <p>My expertise spans <strong>interactive dashboarding</strong> and <strong>data visualization</strong> using tools like Tableau, SQL, and Excel. I've worked on a thesis project to analyze 21,000+ customer reviews using NLP, built supply chain optimization dashboards during my internship, and delivered insights supporting business growth.</p>
             </div>
             <div class="quick-facts">
                 <div class="fact-row"><span>📍 Location</span><strong>Amstelveen, Netherlands</strong></div>
@@ -562,9 +558,8 @@
                 </div>
                 
                 <div class="detail-section">
-                    
                     <h4>Dashboard Insight</h4>
-                    <div class="gallery-item" onclick="openLightbox('assets/employment-dash.jpg')" style="margin: 25px 0; max-width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                    <div class="gallery-item" onclick="openLightbox('assets/employment-dash.jpg')" style="margin: 25px 0; max-width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transform: translateZ(22px);">
                         <img src="assets/employment-dash.jpg" alt="Employment Growth Analysis Dashboard">
                         <div class="img-caption">Click to expand - Great Britain Employment Growth Dashboard</div>
                     </div>
@@ -763,7 +758,6 @@
                     <div class="tool-tag" style="--i:4">Python (Basic)</div>
                     <div class="tool-tag" style="--i:5">Microsoft Excel</div>
                     <div class="tool-tag" style="--i:6">Microsoft Powerpoint</div>
-                    <div class="tool-tag" style="--i:7">JupyterLab (Basic)</div>
                 </div>
             </div>
             
@@ -772,12 +766,12 @@
                 <div class="tool-container">
                     <div class="tool-tag" style="--i:8">Clear Written & Verbal Communication</div> 
                     <div class="tool-tag" style="--i:9">Translating Data into Business Language</div> 
-                    <div class="tool-tag" style="--i:10">Attention to Detail</div> 
-                    <div class="tool-tag" style="--i:11">Stakeholder Communication</div>
+                    <div class="tool-tag" style="--i:10">Dashboarding</div> 
+                    <div class="tool-tag" style="--i:11">Presentation Skills</div>
                     <div class="tool-tag" style="--i:12">Structured Problem Solving</div>
-                    <div class="tool-tag" style="--i:13">Presentation of Insights to Non-Technical Audiences</div>
+                    <div class="tool-tag" style="--i:13">Analytical Skills</div>
                     <div class="tool-tag" style="--i:14">Time Management & Prioritization</div>
-                    <div class="tool-tag" style="--i:15">Cross-Functional Collaboration</div>
+                    <div class="tool-tag" style="--i:15">Attention to Detail</div>
                 </div>
             </div>
         </div>
@@ -814,7 +808,6 @@
         let slideIndex = 1;
         
         function changeSlide(n, event) {
-            // Prevent the lightbox from opening when clicking the arrow
             event.stopPropagation();
             showSlides(slideIndex += n);
         }
@@ -836,12 +829,12 @@
             const lbImg = document.getElementById('lightboxImg');
             lbImg.src = src;
             lb.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Stop page scrolling
+            document.body.style.overflow = 'hidden'; 
         }
 
         document.getElementById('lightbox').onclick = function() {
             this.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
+            document.body.style.overflow = 'auto'; 
         };
 
         // PRELOADER FAILSAFE
@@ -877,7 +870,6 @@
             document.querySelector(".scroll-progress").style.width = (sc/sh)*100 + "%";
             document.getElementById("backToTop").classList.toggle("visible", window.scrollY > 500);
             
-            // Active Nav
             const sections = document.querySelectorAll("section");
             const navLinks = document.querySelectorAll(".nav-link");
             let current = "";
@@ -986,16 +978,16 @@
         });
         counters.forEach(c => observer.observe(c));
 
-        // TILT
+        // TILT EFFECT: Dialed down to just a whisper above the original
         document.querySelectorAll('.tilt-card').forEach(card => {
             card.addEventListener('mousemove', e => {
                 const r = card.getBoundingClientRect();
                 const x = e.clientX - r.left; const y = e.clientY - r.top;
                 card.style.setProperty('--mouse-x', `${x}px`); card.style.setProperty('--mouse-y', `${y}px`);
-                const rx = (r.height/2 - y)/250; const ry = (x - r.width/2)/250; 
-                card.style.transform = `perspective(1500px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+                const rx = (r.height/2 - y)/240; const ry = (x - r.width/2)/240; 
+                card.style.transform = `perspective(1450px) rotateX(${rx}deg) rotateY(${ry}deg)`; 
             });
-            card.addEventListener('mouseleave', () => { card.style.transform = `perspective(1500px) rotateX(0) rotateY(0)`; });
+            card.addEventListener('mouseleave', () => { card.style.transform = `perspective(1450px) rotateX(0) rotateY(0)`; });
         });
 
         // COPY EMAIL
@@ -1003,7 +995,6 @@
             const emailText = document.getElementById("emailToCopy").innerText;
             const btn = document.getElementById("copyBtn");
             const btnText = document.getElementById("btnText");
-            const originalText = "COPY";
 
             const showSuccess = () => {
                 btn.classList.add("success");

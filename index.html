@@ -209,9 +209,9 @@
         .tilt-card::before { content: ""; position: absolute; height: 100%; width: 100%; left: 0; top: 0; background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%); z-index: 1; opacity: 0; transition: opacity 0.5s; pointer-events: none; }
         .tilt-card:hover::before { opacity: 1; }
         .tilt-card:hover { border-color: rgba(6, 182, 212, 0.4); box-shadow: 0 20px 50px -10px rgba(6, 182, 212, 0.1); }
-        .card-content { position: relative; z-index: 2; pointer-events: none; }
+        .card-content { position: relative; z-index: 2; pointer-events: auto; }
 
-        .card-header { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 25px; transform: translateZ(20px); }
+        .card-header { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 25px; transform: translateZ(20px); pointer-events: none; }
         .card-header h3 { font-size: 2.2rem; color: #fff; }
         .company-name { color: var(--primary); font-weight: 600; display: block; margin-top: 8px; font-size: 1.1rem; }
         .date { color: var(--text-muted); font-style: italic; font-size: 1rem; }
@@ -225,6 +225,80 @@
         .impact-box { background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05)); border-left: 4px solid #22c55e; padding: 25px; border-radius: 8px; margin-top: 40px; transform: translateZ(25px); }
         .impact-label { color: #22c55e; font-weight: 800; text-transform: uppercase; font-size: 1rem; letter-spacing: 1.5px; margin-bottom: 8px; }
         .impact-text { color: #fff; font-weight: 600; font-size: 1.15rem; }
+
+        /* ---------------- SLIDESHOW & LIGHTBOX CSS ---------------- */
+        .gallery-item { 
+            position: relative; border-radius: 12px; overflow: hidden; 
+            border: 1px solid var(--border-light); cursor: zoom-in;
+            transition: var(--transition);
+            background: #020617;
+        }
+        .gallery-item:hover { border-color: var(--primary); transform: translateY(-3px); }
+        .gallery-item img { width: 100%; height: auto; display: block; filter: brightness(0.9); transition: 0.3s; }
+        .gallery-item:hover img { filter: brightness(1); }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            background: #020617;
+            transform: translateZ(15px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .mySlides {
+            display: none;
+            cursor: zoom-in;
+            position: relative;
+        }
+
+        .mySlides.active {
+            display: block;
+            animation: fade 0.5s ease-in-out;
+        }
+
+        @keyframes fade {
+            from {opacity: 0.4;}
+            to {opacity: 1;}
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.9);
+            transition: var(--transition);
+        }
+
+        .mySlides:hover img { filter: brightness(1); }
+
+        .img-caption { 
+            position: absolute; bottom: 0; width: 100%; padding: 10px; 
+            background: rgba(10, 15, 28, 0.85); font-size: 0.85rem; color: #fff; text-align: center;
+        }
+
+        .prev-arrow, .next-arrow {
+            cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%);
+            width: 45px; height: 45px; background: rgba(10, 15, 28, 0.7); color: white;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; border: 1px solid rgba(255,255,255,0.2);
+            transition: 0.3s; user-select: none; z-index: 10; font-size: 1.2rem;
+        }
+        .prev-arrow { left: 15px; }
+        .next-arrow { right: 15px; }
+        .prev-arrow:hover, .next-arrow:hover { background: var(--primary); color: #000; border-color: var(--primary); transform: translateY(-50%) scale(1.1); }
+
+        .lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(2, 6, 23, 0.95); z-index: 10001; display: none;
+            justify-content: center; align-items: center; cursor: zoom-out; backdrop-filter: blur(10px);
+        }
+        .lightbox img { max-width: 90%; max-height: 85%; border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.5); border: 1px solid var(--border-light); }
 
         /* ---------------- TIMELINE (Glass & Steel) ---------------- */
         .timeline-wrapper { position: relative; max-width: 900px; margin: 0 auto 100px auto; padding-left: 50px; }
@@ -334,11 +408,14 @@
             
             .email-command-line { flex-direction: column; gap: 15px; text-align: center; }
             #emailDisplay { text-align: center; }
+
+            /* Slideshow Mobile Adjustments */
+            .prev-arrow, .next-arrow { width: 35px; height: 35px; font-size: 1rem; }
         }
 
         .reveal { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, var(--primary), var(--secondary)); z-index: 9999; box-shadow: 0 0 15px var(--primary); transition: width 0.1s; }
+        .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: background: linear-gradient(90deg, var(--primary), var(--secondary)); z-index: 9999; box-shadow: 0 0 15px var(--primary); transition: width 0.1s; }
     </style>
 </head>
 
@@ -349,6 +426,10 @@
             <div class="loader-circle"></div>
             <div class="loader-text">INITIALIZING ANALYTICS...</div>
         </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <img src="" alt="Full Screen Preview" id="lightboxImg">
     </div>
 
     <div class="bg-container">
@@ -406,30 +487,6 @@
                 <div class="fact-row"><span>🎓 Education</span><strong>MSc Business Admin (TIAS)</strong></div>
                 <div class="fact-row"><span>🌍 Languages</span><strong>English, Tamil, Dutch (Learning)</strong></div>
                 <div class="fact-row"><span>🏆 Award</span><strong style="color:var(--primary)">TIAS Team Work Scholarship</strong></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container" style="justify-content:center;">
-        <div class="section-header reveal" style="text-align:center;">
-            <h2 class="decode-text" data-value="What I Bring">What I Bring</h2>
-            <div class="line" style="margin: 20px auto;"></div>
-        </div>
-        <div class="value-grid reveal">
-            <div class="value-card">
-                <div class="value-icon"><i class="fas fa-chess-knight"></i></div>
-                <h3>Insight to Action</h3>
-                <p>From data to decisions. I turn analytical findings into clear, actionable recommendations that support business and stakeholder decision-making.</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon"><i class="fas fa-cogs"></i></div>
-                <h3>Operational Decision Support</h3>
-                <p>Hands-on experience supporting supply chain teams at KRAMP by improving visibility, reducing inefficiencies, and enabling data-driven operational decisions.</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon"><i class="fas fa-brain"></i></div>
-                <h3>Business-Focused Analytics</h3>
-                <p>Analytics designed around business questions, trade-offs, and decision impact, not just metrics.</p>
             </div>
         </div>
     </section>
@@ -492,6 +549,43 @@
             </div>
         </div>
 
+        <div class="tilt-card reveal project-item tableau">
+            <div class="card-content">
+                <div class="card-header">
+                    <div><h3>Employment Growth Analysis Dashboard</h3><span class="company-name">Data Visualization Project | Tableau</span></div>
+                    <span class="date">2011 - 2014 Data</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">Tableau Desktop</span> 
+                    <span class="tag">KPIs & Heatmaps</span> 
+                    <span class="tag">Industry Analytics</span>
+                </div>
+                
+                <div class="detail-section">
+                    
+                    <h4>Dashboard Insight</h4>
+                    <div class="gallery-item" onclick="openLightbox('assets/employment-dash.jpg')" style="margin: 25px 0; max-width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                        <img src="assets/employment-dash.jpg" alt="Employment Growth Analysis Dashboard">
+                        <div class="img-caption">Click to expand - Great Britain Employment Growth Dashboard</div>
+                    </div>
+
+                    <h4>Challenge</h4>
+                    <p>Analyze employment changes across major Great Britain cities (2011–2014) to identify leading growth industries.</p>
+                    
+                    <h4>Approach</h4>
+                    <ul>
+                        <li>Built an interactive Tableau dashboard using 1-digit SIC industry data.</li>
+                        <li>Conducted city-level and industry-level growth comparison using KPIs, diverging bar charts, and heatmaps.</li>
+                    </ul>
+                </div>
+                
+                <div class="impact-box">
+                    <div class="impact-label">Key Result</div>
+                    <div class="impact-text">Identified <strong class="counter" data-target="443">0</strong>K net job growth, with Professional, Scientific & Technical Activities emerging as the highest-growth industry across cities.</div>
+                </div>
+            </div>
+        </div>
+
         <div class="tilt-card reveal project-item tableau python">
             <div class="card-content">
                 <div class="card-header">
@@ -499,7 +593,41 @@
                     <span class="date">2023 Season Data</span>
                 </div>
                 <div class="tags"><span class="tag">Tableau Prep</span> <span class="tag">Data Cleaning</span> <span class="tag">Correlation Analysis</span></div>
+                
                 <div class="detail-section">
+                    
+                    <h4>Dashboard Insights</h4>
+                    <div class="slideshow-container">
+                        
+                        <div class="mySlides active" onclick="openLightbox('assets/nba-dash-1.jpg')">
+                            <img src="assets/nba-dash-1.jpg" alt="Points scored by players in different positions">
+                            <div class="img-caption">1/5 - Points scored by players in different positions</div>
+                        </div>
+
+                        <div class="mySlides" onclick="openLightbox('assets/nba-dash-2.jpg')">
+                            <img src="assets/nba-dash-2.jpg" alt="Assists by players in different positions">
+                            <div class="img-caption">2/5 - Assists by players in different positions</div>
+                        </div>
+
+                        <div class="mySlides" onclick="openLightbox('assets/nba-dash-3.jpg')">
+                            <img src="assets/nba-dash-3.jpg" alt="Correlation between Blocks and Steals of Players and their Personal Fouls">
+                            <div class="img-caption">3/5 - Correlation between Blocks and Steals of Players and their Personal Fouls</div>
+                        </div>
+
+                        <div class="mySlides" onclick="openLightbox('assets/nba-dash-4.jpg')">
+                            <img src="assets/nba-dash-4.jpg" alt="Double Doubles obtained by Players in Different Positions">
+                            <div class="img-caption">4/5 - Double Doubles obtained by Players in Different Positions</div>
+                        </div>
+
+                        <div class="mySlides" onclick="openLightbox('assets/nba-dash-5.jpg')">
+                            <img src="assets/nba-dash-5.jpg" alt="Triple Doubles obtained by Players in Different Positions">
+                            <div class="img-caption">5/5 - Triple Doubles obtained by Players in Different Positions</div>
+                        </div>
+
+                        <a class="prev-arrow" onclick="changeSlide(-1, event)"><i class="fas fa-chevron-left"></i></a>
+                        <a class="next-arrow" onclick="changeSlide(1, event)"><i class="fas fa-chevron-right"></i></a>
+                    </div>
+
                     <h4>Challenge</h4>
                     <p>Analyze the 2022-2023 NBA regular season to determine how playing styles (offensive vs defensive) correlate with personal fouls and versatility across positions.</p>
                     <h4>Approach</h4>
@@ -682,7 +810,41 @@
     <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
 
     <script>
-        // 1. PRELOADER FAILSAFE
+        // SLIDESHOW LOGIC
+        let slideIndex = 1;
+        
+        function changeSlide(n, event) {
+            // Prevent the lightbox from opening when clicking the arrow
+            event.stopPropagation();
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            slides[slideIndex-1].classList.add("active");
+        }
+
+        // LIGHTBOX LOGIC
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightboxImg');
+            lbImg.src = src;
+            lb.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Stop page scrolling
+        }
+
+        document.getElementById('lightbox').onclick = function() {
+            this.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        };
+
+        // PRELOADER FAILSAFE
         window.addEventListener('load', () => {
             const preloader = document.querySelector('.preloader');
             preloader.classList.add('fade-out');
@@ -696,7 +858,7 @@
             }
         }, 2000); 
 
-        // 2. FORCE REVEAL ON LOAD
+        // FORCE REVEAL ON LOAD & SCROLL
         function checkReveal() {
             document.querySelectorAll('.reveal').forEach(r => {
                 if(r.getBoundingClientRect().top < window.innerHeight - 50) { 
@@ -730,7 +892,7 @@
         });
         checkReveal();
 
-        // 3. CANVAS BG
+        // CANVAS BG
         const canvas = document.getElementById('canvas-bg'); const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
         let particlesArray;
@@ -767,7 +929,7 @@
         window.addEventListener('resize', () => { canvas.width=innerWidth; canvas.height=innerHeight; init(); });
         init(); animate();
 
-        // 4. TYPEWRITER
+        // TYPEWRITER
         const textElement = document.querySelector(".typewriter");
         const roles = ["Business Analyst", "Data Storyteller", "Business Consultant"];
         let roleIndex = 0; let charIndex = 0; let isDeleting = false;
@@ -782,7 +944,7 @@
         }
         document.addEventListener("DOMContentLoaded", typeEffect);
 
-        // 5. DECODE TEXT (FASTER)
+        // DECODE TEXT
         const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         document.querySelectorAll(".decode-text").forEach(h => {
             h.onmouseover = e => {
@@ -798,7 +960,7 @@
             let evt = new Event('mouseover'); h.dispatchEvent(evt);
         });
 
-        // 6. FILTER
+        // FILTER
         function filterProjects(cat) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
@@ -808,7 +970,7 @@
             });
         }
 
-        // 7. COUNTERS
+        // COUNTERS
         const counters = document.querySelectorAll('.counter');
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
@@ -824,7 +986,7 @@
         });
         counters.forEach(c => observer.observe(c));
 
-        // 8. TILT
+        // TILT
         document.querySelectorAll('.tilt-card').forEach(card => {
             card.addEventListener('mousemove', e => {
                 const r = card.getBoundingClientRect();
@@ -836,7 +998,7 @@
             card.addEventListener('mouseleave', () => { card.style.transform = `perspective(1500px) rotateX(0) rotateY(0)`; });
         });
 
-        // 9. COPY EMAIL (ROBUST FALLBACK)
+        // COPY EMAIL
         function copyEmail() {
             const emailText = document.getElementById("emailToCopy").innerText;
             const btn = document.getElementById("copyBtn");

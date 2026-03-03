@@ -8,22 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700;900&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ==================== DESIGN PHILOSOPHY ====================
-           Aesthetic: Editorial Luxury meets Consulting Precision
-           - Playfair Display for prestigious headlines (consulting gravitas)
-           - Crimson Pro for elegant body copy (readable sophistication)
-           - DM Sans for UI elements (modern precision)
-           - Rich burgundy/gold palette (trust + premium)
-           - Generous whitespace (consulting clarity)
-           - Serif-dominated hierarchy (established expertise)
-        ========================================================== */
-
         :root {
-            /* Consulting Color Palette: Trust, Premium, Clarity */
             --rich-black: #1a1a1a;
             --charcoal: #2d2d2d;
             --warm-grey: #f5f3f0;
@@ -34,12 +22,10 @@
             --sage: #88917a;
             --accent-blue: #2c5f7f;
             
-            /* Typography Scale */
             --font-display: 'Playfair Display', serif;
             --font-body: 'Crimson Pro', serif;
             --font-ui: 'DM Sans', sans-serif;
             
-            /* Spacing System */
             --space-xs: 0.5rem;
             --space-sm: 1rem;
             --space-md: 2rem;
@@ -47,26 +33,14 @@
             --space-xl: 6rem;
             --space-2xl: 8rem;
             
-            /* Transitions */
             --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
             --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        /* ==================== RESET & BASE ==================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        @media (max-width: 768px) {
-            html { font-size: 15px; }
-        }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        @media (max-width: 768px) { html { font-size: 15px; } }
 
         body {
             font-family: var(--font-body);
@@ -78,30 +52,13 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        ::selection {
-            background: var(--burgundy);
-            color: white;
-        }
+        ::selection { background: var(--burgundy); color: white; }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--warm-grey); }
+        ::-webkit-scrollbar-thumb { background: var(--burgundy); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--deep-burgundy); }
 
-        ::-webkit-scrollbar-track {
-            background: var(--warm-grey);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--burgundy);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--deep-burgundy);
-        }
-
-        /* ==================== TYPOGRAPHY ==================== */
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--font-display);
             font-weight: 700;
@@ -114,1823 +71,976 @@
         h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
         h4 { font-size: 1.5rem; font-family: var(--font-ui); font-weight: 600; }
 
-        p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            margin-bottom: var(--space-md);
-        }
+        p { font-size: 1.125rem; line-height: 1.8; margin-bottom: var(--space-md); }
+        a { text-decoration: none; color: inherit; transition: all 0.3s var(--ease-smooth); }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s var(--ease-smooth);
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-md); }
+        @media (max-width: 768px) { .container { padding: 0 var(--space-sm); } }
 
-        /* ==================== LAYOUT SYSTEM ==================== */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--space-md);
-        }
+        .section { padding: var(--space-2xl) 0; position: relative; }
+        @media (max-width: 768px) { .section { padding: var(--space-xl) 0; } }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 var(--space-sm);
-            }
-        }
-
-        .section {
-            padding: var(--space-2xl) 0;
-            position: relative;
-        }
-
-        @media (max-width: 768px) {
-            .section {
-                padding: var(--space-xl) 0;
-            }
-        }
-
-        /* ==================== NAVIGATION ==================== */
+        /* ── NAV ── */
         .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             background: rgba(253, 252, 250, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(139, 58, 58, 0.1);
             transition: all 0.3s var(--ease-smooth);
         }
-
-        .nav.scrolled {
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-        }
+        .nav.scrolled { box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05); }
 
         .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            max-width: 1400px; margin: 0 auto;
             padding: var(--space-sm) var(--space-md);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
-        .nav-logo {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--rich-black);
-            letter-spacing: -0.01em;
-        }
+        .nav-logo { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--rich-black); letter-spacing: -0.01em; }
 
         .nav-menu {
-            display: flex;
-            gap: var(--space-lg);
-            list-style: none;
-            font-family: var(--font-ui);
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
+            display: flex; gap: var(--space-lg); list-style: none;
+            font-family: var(--font-ui); font-size: 0.9rem; font-weight: 500;
+            letter-spacing: 0.02em; text-transform: uppercase;
         }
+        .nav-menu a { color: var(--charcoal); position: relative; padding: 0.25rem 0; }
+        .nav-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--burgundy); transition: width 0.3s var(--ease-smooth); }
+        .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
 
-        .nav-menu a {
-            color: var(--charcoal);
-            position: relative;
-            padding: 0.25rem 0;
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--burgundy);
-            transition: width 0.3s var(--ease-smooth);
-        }
-
-        .nav-menu a:hover::after,
-        .nav-menu a.active::after {
-            width: 100%;
-        }
-
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .nav-toggle span {
-            width: 25px;
-            height: 2px;
-            background: var(--rich-black);
-            transition: all 0.3s var(--ease-smooth);
-        }
+        .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 0.5rem; }
+        .nav-toggle span { width: 25px; height: 2px; background: var(--rich-black); transition: all 0.3s var(--ease-smooth); }
 
         @media (max-width: 768px) {
             .nav-menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
-                background: var(--cream);
-                flex-direction: column;
-                gap: var(--space-md);
+                position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
+                background: var(--cream); flex-direction: column; gap: var(--space-md);
                 padding: var(--space-2xl) var(--space-md);
                 box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
                 transition: right 0.4s var(--ease-smooth);
             }
-
-            .nav-menu.active {
-                right: 0;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .nav-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .nav-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .nav-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -7px);
-            }
+            .nav-menu.active { right: 0; }
+            .nav-toggle { display: flex; }
+            .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .nav-toggle.active span:nth-child(2) { opacity: 0; }
+            .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
         }
 
-        /* ==================== HERO SECTION ==================== */
+        /* ── HERO ── */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+            min-height: 100vh; display: flex; align-items: center;
             background: linear-gradient(135deg, var(--warm-grey) 0%, var(--cream) 100%);
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px;
+            position: relative; overflow: hidden; padding-top: 80px;
         }
 
         .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 80%;
-            height: 120%;
+            content: ''; position: absolute; top: -50%; right: -20%; width: 80%; height: 120%;
             background: radial-gradient(circle, rgba(201, 169, 97, 0.08) 0%, transparent 70%);
             pointer-events: none;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-        }
+        .hero-content { position: relative; z-index: 2; max-width: 900px; }
 
         .hero-eyebrow {
-            font-family: var(--font-ui);
-            font-size: 0.875rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--burgundy);
+            font-family: var(--font-ui); font-size: 0.875rem; font-weight: 600;
+            letter-spacing: 0.15em; text-transform: uppercase; color: var(--burgundy);
             margin-bottom: var(--space-sm);
-            opacity: 0;
-            animation: fadeInUp 0.8s var(--ease-smooth) 0.2s forwards;
+            opacity: 0; animation: fadeInUp 0.8s var(--ease-smooth) 0.2s forwards;
         }
 
-        .hero h1 {
-            margin-bottom: var(--space-md);
-            opacity: 0;
-            animation: fadeInUp 0.8s var(--ease-smooth) 0.4s forwards;
-        }
+        .hero h1 { margin-bottom: var(--space-md); opacity: 0; animation: fadeInUp 0.8s var(--ease-smooth) 0.4s forwards; }
 
         .hero-subtitle {
-            font-size: 1.375rem;
-            color: var(--charcoal);
-            margin-bottom: var(--space-lg);
-            max-width: 700px;
-            opacity: 0;
-            animation: fadeInUp 0.8s var(--ease-smooth) 0.6s forwards;
+            font-size: 1.375rem; color: var(--charcoal); margin-bottom: var(--space-lg); max-width: 700px;
+            opacity: 0; animation: fadeInUp 0.8s var(--ease-smooth) 0.6s forwards;
         }
 
         .hero-cta {
-            display: flex;
-            gap: var(--space-sm);
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeInUp 0.8s var(--ease-smooth) 0.8s forwards;
+            display: flex; gap: var(--space-sm); flex-wrap: wrap;
+            opacity: 0; animation: fadeInUp 0.8s var(--ease-smooth) 0.8s forwards;
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 768px) {
-            .hero {
-                min-height: calc(100vh - 60px);
-            }
+        @media (max-width: 768px) { .hero-subtitle { font-size: 1.125rem; } }
 
-            .hero-subtitle {
-                font-size: 1.125rem;
-            }
-        }
-
-        /* ==================== BUTTONS ==================== */
+        /* ── BUTTONS ── */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            font-family: var(--font-ui);
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s var(--ease-smooth);
-            position: relative;
-            overflow: hidden;
+            display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem;
+            font-family: var(--font-ui); font-size: 0.9rem; font-weight: 600;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            border: none; cursor: pointer; transition: all 0.3s var(--ease-smooth);
+            position: relative; overflow: hidden;
+        }
+        .btn-primary { background: var(--burgundy); color: white; }
+        .btn-primary:hover { background: var(--deep-burgundy); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(139, 58, 58, 0.3); }
+        .btn-secondary { background: transparent; color: var(--rich-black); border: 2px solid var(--rich-black); }
+        .btn-secondary:hover { background: var(--rich-black); color: white; }
+
+        /* ── SECTION HEADERS ── */
+        .section-header { text-align: center; margin-bottom: var(--space-xl); }
+        .section-number { font-family: var(--font-ui); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: var(--space-sm); }
+        .section-title { margin-bottom: var(--space-sm); }
+        .section-divider { width: 60px; height: 3px; background: var(--burgundy); margin: var(--space-md) auto; }
+
+        /* ── ABOUT ── */
+        .about-content { max-width: 860px; margin: 0 auto; }
+
+        .about-lead {
+            font-size: 1.35rem; line-height: 1.85; color: var(--charcoal);
+            margin-bottom: var(--space-lg);
+            border-left: 4px solid var(--burgundy); padding-left: var(--space-md);
         }
 
-        .btn-primary {
-            background: var(--burgundy);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--deep-burgundy);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(139, 58, 58, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--rich-black);
-            border: 2px solid var(--rich-black);
-        }
-
-        .btn-secondary:hover {
-            background: var(--rich-black);
-            color: white;
-        }
-
-        /* ==================== SECTION HEADERS ==================== */
-        .section-header {
-            text-align: center;
-            margin-bottom: var(--space-xl);
-        }
-
-        .section-number {
-            font-family: var(--font-ui);
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: var(--space-sm);
-        }
-
-        .section-title {
-            margin-bottom: var(--space-sm);
-        }
-
-        .section-divider {
-            width: 60px;
-            height: 3px;
-            background: var(--burgundy);
-            margin: var(--space-md) auto;
-        }
-
-        /* ==================== ABOUT SECTION ==================== */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-xl);
-            align-items: start;
-        }
-
-        @media (max-width: 968px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: var(--space-lg);
-            }
-        }
-
-        .about-image-wrapper {
-            position: relative;
-        }
-
-        .about-image-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            width: 100%;
-            height: 100%;
-            border: 3px solid var(--burgundy);
-            z-index: -1;
-        }
-
-        .about-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: grayscale(20%);
-            transition: filter 0.5s var(--ease-smooth);
-        }
-
-        .about-image:hover {
-            filter: grayscale(0%);
-        }
-
-        .about-text h3 {
-            font-family: var(--font-ui);
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--burgundy);
-            margin-top: var(--space-lg);
-            margin-bottom: var(--space-sm);
-        }
+        .about-body { font-size: 1.125rem; line-height: 1.8; margin-bottom: var(--space-lg); }
 
         .about-facts {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-md);
-            margin-top: var(--space-lg);
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md); margin-top: var(--space-lg);
         }
+        @media (max-width: 900px) { .about-facts { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px)  { .about-facts { grid-template-columns: 1fr 1fr; gap: var(--space-sm); } }
 
         .fact-item {
-            padding: var(--space-md);
-            background: white;
-            border-left: 3px solid var(--gold);
+            padding: var(--space-md); background: white; border-left: 3px solid var(--gold);
         }
 
-        .fact-label {
-            font-family: var(--font-ui);
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--charcoal);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.25rem;
-        }
+        .fact-label { font-family: var(--font-ui); font-size: 0.875rem; font-weight: 600; color: var(--charcoal); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+        .fact-value { font-size: 1rem; color: var(--rich-black); }
 
-        .fact-value {
-            font-size: 1rem;
-            color: var(--rich-black);
-        }
+        /* ── PROJECTS ── */
+        .projects { background: white; }
 
-        @media (max-width: 768px) {
-            .about-facts {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ==================== PROJECTS SECTION ==================== */
-        .projects {
-            background: white;
-        }
-
-        .filter-buttons {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-sm);
-            margin-bottom: var(--space-xl);
-            flex-wrap: wrap;
-        }
+        .filter-buttons { display: flex; justify-content: center; gap: var(--space-sm); margin-bottom: var(--space-xl); flex-wrap: wrap; }
 
         .filter-btn {
-            padding: 0.75rem 1.5rem;
-            font-family: var(--font-ui);
-            font-size: 0.875rem;
-            font-weight: 500;
-            background: transparent;
-            border: 1px solid var(--charcoal);
-            color: var(--charcoal);
-            cursor: pointer;
-            transition: all 0.3s var(--ease-smooth);
+            padding: 0.75rem 1.5rem; font-family: var(--font-ui); font-size: 0.875rem; font-weight: 500;
+            background: transparent; border: 1px solid var(--charcoal); color: var(--charcoal);
+            cursor: pointer; transition: all 0.3s var(--ease-smooth);
         }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: var(--burgundy);
-            color: white;
-            border-color: var(--burgundy);
-        }
+        .filter-btn:hover, .filter-btn.active { background: var(--burgundy); color: white; border-color: var(--burgundy); }
 
         .project-card {
-            background: var(--warm-grey);
-            padding: var(--space-lg);
-            margin-bottom: var(--space-lg);
-            border-left: 4px solid var(--burgundy);
-            transition: all 0.5s var(--ease-smooth);
+            background: var(--warm-grey); padding: var(--space-lg); margin-bottom: var(--space-lg);
+            border-left: 4px solid var(--burgundy); transition: all 0.5s var(--ease-smooth);
         }
+        .project-card:hover { transform: translateX(10px); box-shadow: -10px 10px 40px rgba(0, 0, 0, 0.08); }
 
-        .project-card:hover {
-            transform: translateX(10px);
-            box-shadow: -10px 10px 40px rgba(0, 0, 0, 0.08);
-        }
+        @media (max-width: 600px) { .project-card { padding: var(--space-md); } }
 
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: var(--space-md);
-            gap: var(--space-md);
-            flex-wrap: wrap;
-        }
+        .project-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--space-md); gap: var(--space-md); flex-wrap: wrap; }
+        .project-title { flex: 1; }
+        .project-company { font-family: var(--font-ui); font-size: 1rem; color: var(--burgundy); font-weight: 600; margin-top: 0.5rem; }
+        .project-date { font-family: var(--font-ui); font-size: 0.875rem; color: var(--charcoal); font-style: italic; }
 
-        .project-title {
-            flex: 1;
-        }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: var(--space-md); }
+        .tag { padding: 0.375rem 1rem; font-family: var(--font-ui); font-size: 0.8rem; font-weight: 500; background: white; color: var(--burgundy); border: 1px solid var(--burgundy); text-transform: uppercase; letter-spacing: 0.05em; }
 
-        .project-company {
-            font-family: var(--font-ui);
-            font-size: 1rem;
-            color: var(--burgundy);
-            font-weight: 600;
-            margin-top: 0.5rem;
-        }
+        .project-content h4 { font-family: var(--font-ui); font-size: 1rem; font-weight: 700; color: var(--burgundy); text-transform: uppercase; letter-spacing: 0.05em; margin-top: var(--space-md); margin-bottom: var(--space-sm); }
 
-        .project-date {
-            font-family: var(--font-ui);
-            font-size: 0.875rem;
-            color: var(--charcoal);
-            font-style: italic;
-        }
+        .project-content ul { list-style: none; padding-left: 0; }
+        .project-content li { padding-left: 1.5rem; position: relative; margin-bottom: 0.75rem; font-size: 1.0625rem; }
+        .project-content li::before { content: '—'; position: absolute; left: 0; color: var(--burgundy); font-weight: bold; }
 
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: var(--space-md);
-        }
+        .project-impact { margin-top: var(--space-md); padding: var(--space-md); background: linear-gradient(135deg, rgba(139,58,58,0.05), rgba(201,169,97,0.05)); border-left: 4px solid var(--gold); }
+        .impact-label { font-family: var(--font-ui); font-size: 0.875rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+        .impact-text { font-weight: 600; font-size: 1.125rem; color: var(--rich-black); }
 
-        .tag {
-            padding: 0.375rem 1rem;
-            font-family: var(--font-ui);
-            font-size: 0.8rem;
-            font-weight: 500;
-            background: white;
-            color: var(--burgundy);
-            border: 1px solid var(--burgundy);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
+        .project-gallery { margin: var(--space-md) 0; position: relative; }
 
-        .project-content h4 {
-            font-family: var(--font-ui);
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--burgundy);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: var(--space-md);
-            margin-bottom: var(--space-sm);
-        }
-
-        .project-content ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .project-content li {
-            padding-left: 1.5rem;
-            position: relative;
-            margin-bottom: 0.75rem;
-            font-size: 1.0625rem;
-        }
-
-        .project-content li::before {
-            content: '—';
-            position: absolute;
-            left: 0;
-            color: var(--burgundy);
-            font-weight: bold;
-        }
-
-        .project-impact {
-            margin-top: var(--space-md);
-            padding: var(--space-md);
-            background: linear-gradient(135deg, rgba(139, 58, 58, 0.05), rgba(201, 169, 97, 0.05));
-            border-left: 4px solid var(--gold);
-        }
-
-        .impact-label {
-            font-family: var(--font-ui);
-            font-size: 0.875rem;
-            font-weight: 700;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-        }
-
-        .impact-text {
-            font-weight: 600;
-            font-size: 1.125rem;
-            color: var(--rich-black);
-        }
-
-        .project-gallery {
-            margin: var(--space-md) 0;
-            position: relative;
-        }
-/* Tableau Link Box */
-.project-link-box {
-    margin: var(--space-md) 0;
-    text-align: center;
-}
-
-.project-link-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.9rem 1.8rem;
-    font-family: var(--font-ui);
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    background: var(--burgundy);
-    color: white;
-    border: 1px solid var(--burgundy);
-    transition: all 0.3s var(--ease-smooth);
-}
-
-.project-link-btn:hover {
-    background: var(--deep-burgundy);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(139, 58, 58, 0.3);
-}
-
-        .gallery-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            cursor: pointer;
-            transition: opacity 0.3s var(--ease-smooth);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .gallery-image:hover {
-            opacity: 0.9;
-        }
-
-        /* Gallery Slideshow */
-        .slideshow {
-            position: relative;
-            margin: var(--space-md) 0;
-        }
-
-        .slide {
-            display: none;
-            width: 100%;
-        }
-
-        .slide.active {
-            display: block;
-            animation: fadeIn 0.5s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .slide-caption {
-            text-align: center;
-            font-size: 0.875rem;
-            color: var(--charcoal);
-            margin-top: var(--space-sm);
-            font-style: italic;
-        }
-
-        .slide-nav {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: var(--space-sm);
-        }
-
-        .slide-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--burgundy);
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .project-link-box { margin: var(--space-md) 0; text-align: center; }
+        .project-link-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 1.8rem;
+            font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+            background: var(--burgundy); color: white; border: 1px solid var(--burgundy);
             transition: all 0.3s var(--ease-smooth);
         }
+        .project-link-btn:hover { background: var(--deep-burgundy); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(139,58,58,0.3); }
 
-        .slide-btn:hover {
-            background: var(--deep-burgundy);
-            transform: scale(1.1);
-        }
+        .gallery-image { width: 100%; height: auto; display: block; cursor: pointer; transition: opacity 0.3s var(--ease-smooth); border: 1px solid rgba(0,0,0,0.1); }
+        .gallery-image:hover { opacity: 0.9; }
+
+        /* Slideshow */
+        .slideshow { position: relative; margin: var(--space-md) 0; }
+        .slide { display: none; width: 100%; }
+        .slide.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .slide-caption { text-align: center; font-size: 0.875rem; color: var(--charcoal); margin-top: var(--space-sm); font-style: italic; }
+
+        .slide-nav { display: flex; justify-content: center; gap: 1rem; margin-top: var(--space-sm); }
+        .slide-btn { width: 40px; height: 40px; background: var(--burgundy); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s var(--ease-smooth); }
+        .slide-btn:hover { background: var(--deep-burgundy); transform: scale(1.1); }
 
         /* Lightbox */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            cursor: zoom-out;
-        }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center; cursor: zoom-out; }
+        .lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .lightbox.active { display: flex; }
 
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-        }
+        /* ── EXPERIENCE ── */
+        .timeline { position: relative; padding-left: var(--space-lg); }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--burgundy), var(--gold)); }
 
-        .lightbox.active {
-            display: flex;
-        }
+        .timeline-item { position: relative; margin-bottom: var(--space-xl); padding: var(--space-lg); background: white; border: 1px solid rgba(0,0,0,0.05); transition: all 0.5s var(--ease-smooth); }
+        .timeline-item::before { content: ''; position: absolute; left: calc(-1 * var(--space-lg) - 7px); top: var(--space-lg); width: 14px; height: 14px; background: var(--burgundy); border: 3px solid var(--cream); border-radius: 50%; }
+        .timeline-item:hover { transform: translateX(10px); box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
 
-        /* ==================== EXPERIENCE SECTION ==================== */
-        .timeline {
-            position: relative;
-            padding-left: var(--space-lg);
-        }
+        .timeline-header { display: flex; align-items: start; gap: var(--space-md); margin-bottom: var(--space-md); }
+        .company-logo { width: 60px; height: 60px; object-fit: contain; border: 1px solid rgba(0,0,0,0.1); padding: 0.5rem; background: white; }
+        .timeline-title h3 { margin-bottom: 0.25rem; }
+        .timeline-company { font-family: var(--font-ui); font-size: 1rem; color: var(--burgundy); font-weight: 600; }
+        .timeline-date { font-family: var(--font-ui); font-size: 0.875rem; color: var(--charcoal); font-style: italic; margin-top: 0.5rem; }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--burgundy), var(--gold));
-        }
+        .timeline-content ul { list-style: none; padding-left: 0; }
+        .timeline-content li { padding-left: 1.5rem; position: relative; margin-bottom: 0.75rem; font-size: 1.0625rem; }
+        .timeline-content li::before { content: '●'; position: absolute; left: 0; color: var(--burgundy); }
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: var(--space-xl);
-            padding: var(--space-lg);
-            background: white;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.5s var(--ease-smooth);
-        }
+        @media (max-width: 768px) { .timeline { padding-left: var(--space-md); } .timeline-item::before { left: calc(-1 * var(--space-md) - 7px); } }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: calc(-1 * var(--space-lg) - 7px);
-            top: var(--space-lg);
-            width: 14px;
-            height: 14px;
-            background: var(--burgundy);
-            border: 3px solid var(--cream);
-            border-radius: 50%;
-        }
+        /* ── EDUCATION ── */
+        .education { background: white; }
+        .education-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-lg); }
 
-        .timeline-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        }
+        .education-card { padding: var(--space-lg); background: var(--warm-grey); border-top: 4px solid var(--burgundy); transition: all 0.5s var(--ease-smooth); }
+        .education-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
 
-        .timeline-header {
-            display: flex;
-            align-items: start;
-            gap: var(--space-md);
-            margin-bottom: var(--space-md);
-        }
+        .education-header { display: flex; align-items: start; gap: var(--space-md); margin-bottom: var(--space-md); }
+        .education-logo { width: 60px; height: 60px; object-fit: contain; border: 1px solid rgba(0,0,0,0.1); padding: 0.5rem; background: white; }
+        .education-title h3 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+        .education-school { font-family: var(--font-ui); font-size: 1rem; color: var(--burgundy); font-weight: 600; }
+        .education-details { font-size: 1.0625rem; color: var(--charcoal); margin-top: var(--space-sm); }
 
-        .company-logo {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            padding: 0.5rem;
-            background: white;
-        }
+        /* ── SKILLS ── */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-lg); }
 
-        .timeline-title h3 {
-            margin-bottom: 0.25rem;
-        }
+        .skill-category { padding: var(--space-lg); background: white; border-left: 4px solid var(--gold); transition: all 0.5s var(--ease-smooth); }
+        .skill-category:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
+        .skill-category h3 { font-family: var(--font-ui); font-size: 1.25rem; margin-bottom: var(--space-md); display: flex; align-items: center; gap: 0.5rem; }
+        .skill-category i { color: var(--burgundy); }
 
-        .timeline-company {
-            font-family: var(--font-ui);
-            font-size: 1rem;
-            color: var(--burgundy);
-            font-weight: 600;
-        }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .skill-tag { padding: 0.5rem 1rem; font-family: var(--font-ui); font-size: 0.875rem; background: var(--warm-grey); color: var(--rich-black); border: 1px solid rgba(0,0,0,0.1); transition: all 0.3s var(--ease-smooth); }
+        .skill-tag:hover { background: var(--burgundy); color: white; border-color: var(--burgundy); transform: translateY(-2px); }
 
-        .timeline-date {
-            font-family: var(--font-ui);
-            font-size: 0.875rem;
-            color: var(--charcoal);
-            font-style: italic;
-            margin-top: 0.5rem;
-        }
+        /* ── CONTACT ── */
+        .contact { background: var(--rich-black); color: white; }
+        .contact .section-title, .contact .section-number { color: white; }
+        .contact .section-divider { background: var(--gold); }
 
-        .timeline-content ul {
-            list-style: none;
-            padding-left: 0;
-        }
+        .contact-content { text-align: center; max-width: 800px; margin: 0 auto; }
+        .contact-text { font-size: 1.25rem; margin-bottom: var(--space-lg); color: rgba(255,255,255,0.9); }
 
-        .timeline-content li {
-            padding-left: 1.5rem;
-            position: relative;
-            margin-bottom: 0.75rem;
-            font-size: 1.0625rem;
-        }
+        .contact-email { display: inline-flex; align-items: center; gap: var(--space-md); padding: var(--space-md) var(--space-lg); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); margin-bottom: var(--space-lg); transition: all 0.3s var(--ease-smooth); }
+        .contact-email:hover { background: rgba(255,255,255,0.1); border-color: var(--gold); }
+        .email-address { font-family: var(--font-ui); font-size: 1.25rem; font-weight: 500; color: white; }
 
-        .timeline-content li::before {
-            content: '●';
-            position: absolute;
-            left: 0;
-            color: var(--burgundy);
-        }
+        .copy-btn { padding: 0.75rem 1.5rem; background: var(--gold); color: var(--rich-black); border: none; font-family: var(--font-ui); font-weight: 600; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: all 0.3s var(--ease-smooth); }
+        .copy-btn:hover { background: white; transform: scale(1.05); }
+        .copy-btn.copied { background: var(--sage); color: white; }
 
-        @media (max-width: 768px) {
-            .timeline {
-                padding-left: var(--space-md);
-            }
+        .social-links { display: flex; justify-content: center; gap: var(--space-md); margin-top: var(--space-xl); }
+        .social-link { width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 1.5rem; transition: all 0.3s var(--ease-smooth); }
+        .social-link:hover { background: var(--gold); color: var(--rich-black); transform: translateY(-5px); }
 
-            .timeline-item::before {
-                left: calc(-1 * var(--space-md) - 7px);
-            }
-        }
+        /* ── BACK TO TOP ── */
+        .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 50px; height: 50px; background: var(--burgundy); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-smooth); z-index: 999; border: none; cursor: pointer; }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--deep-burgundy); transform: translateY(-5px); }
 
-        /* ==================== EDUCATION SECTION ==================== */
-        .education {
-            background: white;
-        }
+        /* ── REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s var(--ease-smooth); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        .education-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-lg);
-        }
+        .strong-number { font-weight: 700; color: var(--burgundy); }
 
-        .education-card {
-            padding: var(--space-lg);
-            background: var(--warm-grey);
-            border-top: 4px solid var(--burgundy);
-            transition: all 0.5s var(--ease-smooth);
-        }
-
-        .education-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-        }
-
-        .education-header {
-            display: flex;
-            align-items: start;
-            gap: var(--space-md);
-            margin-bottom: var(--space-md);
-        }
-
-        .education-logo {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            padding: 0.5rem;
-            background: white;
-        }
-
-        .education-title h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .education-school {
-            font-family: var(--font-ui);
-            font-size: 1rem;
-            color: var(--burgundy);
-            font-weight: 600;
-        }
-
-        .education-details {
-            font-size: 1.0625rem;
-            color: var(--charcoal);
-            margin-top: var(--space-sm);
-        }
-
-        /* ==================== SKILLS SECTION ==================== */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-lg);
-        }
-
-        .skill-category {
-            padding: var(--space-lg);
-            background: white;
-            border-left: 4px solid var(--gold);
-            transition: all 0.5s var(--ease-smooth);
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-        }
-
-        .skill-category h3 {
-            font-family: var(--font-ui);
-            font-size: 1.25rem;
-            margin-bottom: var(--space-md);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .skill-category i {
-            color: var(--burgundy);
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-tag {
-            padding: 0.5rem 1rem;
-            font-family: var(--font-ui);
-            font-size: 0.875rem;
-            background: var(--warm-grey);
-            color: var(--rich-black);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            transition: all 0.3s var(--ease-smooth);
-        }
-
-        .skill-tag:hover {
-            background: var(--burgundy);
-            color: white;
-            border-color: var(--burgundy);
-            transform: translateY(-2px);
-        }
-
-        /* ==================== CONTACT SECTION ==================== */
-        .contact {
-            background: var(--rich-black);
-            color: white;
-        }
-
-        .contact .section-title,
-        .contact .section-number {
-            color: white;
-        }
-
-        .contact .section-divider {
-            background: var(--gold);
-        }
-
-        .contact-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-text {
-            font-size: 1.25rem;
-            margin-bottom: var(--space-lg);
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .contact-email {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-md);
-            padding: var(--space-md) var(--space-lg);
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: var(--space-lg);
-            transition: all 0.3s var(--ease-smooth);
-        }
-
-        .contact-email:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--gold);
-        }
-
-        .email-address {
-            font-family: var(--font-ui);
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: white;
-        }
-
-        .copy-btn {
-            padding: 0.75rem 1.5rem;
-            background: var(--gold);
-            color: var(--rich-black);
-            border: none;
-            font-family: var(--font-ui);
-            font-weight: 600;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            transition: all 0.3s var(--ease-smooth);
-        }
-
-        .copy-btn:hover {
-            background: white;
-            transform: scale(1.05);
-        }
-
-        .copy-btn.copied {
-            background: var(--sage);
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-md);
-            margin-top: var(--space-xl);
-        }
-
-        .social-link {
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1.5rem;
-            transition: all 0.3s var(--ease-smooth);
-        }
-
-        .social-link:hover {
-            background: var(--gold);
-            color: var(--rich-black);
-            transform: translateY(-5px);
-        }
-
-        /* ==================== FOOTER ==================== */
-        .footer {
-            background: var(--charcoal);
-            color: rgba(255, 255, 255, 0.7);
-            text-align: center;
-            padding: var(--space-lg) 0;
-        }
-
-        .footer p {
-            font-size: 0.9rem;
-            margin: 0;
-        }
-
-        /* ==================== BACK TO TOP ==================== */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--burgundy);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s var(--ease-smooth);
-            z-index: 999;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background: var(--deep-burgundy);
-            transform: translateY(-5px);
-        }
-
-        /* ==================== UTILITIES ==================== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s var(--ease-smooth);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .strong-number {
-            font-weight: 700;
-            color: var(--burgundy);
-        }
-
-        @media (max-width: 768px) {
-            .hide-mobile {
-                display: none;
-            }
+        @media (max-width: 600px) {
+            .contact-email { flex-direction: column; gap: 0.75rem; text-align: center; }
+            .email-address { font-size: 0.95rem; word-break: break-all; }
         }
     </style>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <div class="nav-logo">Janav Rithik S J</div>
-            <ul class="nav-menu">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#projects" class="nav-link">Work</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <div class="nav-container">
+        <div class="nav-logo">Janav Rithik S J</div>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#about"      class="nav-link">About</a></li>
+            <li><a href="#projects"   class="nav-link">Work</a></li>
+            <li><a href="#experience" class="nav-link">Experience</a></li>
+            <li><a href="#education"  class="nav-link">Education</a></li>
+            <li><a href="#skills"     class="nav-link">Skills</a></li>
+            <li><a href="#contact"    class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-toggle" id="navToggle">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-eyebrow">Business Analyst &amp; Data Specialist</div>
+            <h1>Janav Rithik<br>Sudha Jaya Mohan</h1>
+            <p class="hero-subtitle">Transforming complex data into strategic insights and visualizations that drive business growth — combining business and analytics</p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View Portfolio</a>
+                <a href="#contact"  class="btn btn-secondary">Get in Touch</a>
             </div>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-eyebrow">Business Analyst & AI Tools Specialist</div>
-                <h1>Janav Rithik<br>Sudha Jaya Mohan</h1>
-                <p class="hero-subtitle">Transforming complex data into strategic insights and visualizations that drive business growth - combining business and analytics</p>
-                <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">View Portfolio</a>
-                    <a href="assets/resume.pdf" target="_blank" class="btn btn-secondary">
-                        <i class="fas fa-file-download"></i> Download CV
+<!-- ABOUT -->
+<section id="about" class="section">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-number">01</div>
+            <h2 class="section-title">About</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="about-content">
+            <p class="about-lead reveal">
+                I am a business analyst and data specialist focused on transforming complex data into actionable insights that drive strategic decision-making.
+            </p>
+            <p class="about-body reveal">
+                I recently completed my MSc in Business Administration with a specialization in Business Analytics at TIAS School for Business and Society. My expertise spans interactive dashboarding and data visualization using tools like Tableau, SQL, and Excel. I've worked on a thesis project to analyze 21,000+ customer reviews using NLP, built supply chain optimization dashboards during my internship at KRAMP, and delivered insights supporting business growth.
+            </p>
+
+            <div class="about-facts">
+                <div class="fact-item reveal">
+                    <div class="fact-label">Location</div>
+                    <div class="fact-value">Amstelveen, Netherlands</div>
+                </div>
+                <div class="fact-item reveal">
+                    <div class="fact-label">Education</div>
+                    <div class="fact-value">MSc Business Admin (TIAS)</div>
+                </div>
+                <div class="fact-item reveal">
+                    <div class="fact-label">Languages</div>
+                    <div class="fact-value">English, Tamil</div>
+                </div>
+                <div class="fact-item reveal">
+                    <div class="fact-label">Award</div>
+                    <div class="fact-value">TIAS Team Work Scholarship</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section projects">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-number">02</div>
+            <h2 class="section-title">Featured Work</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="filter-buttons reveal">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="python">Python &amp; NLP</button>
+            <button class="filter-btn" data-filter="tableau">Tableau &amp; SQL</button>
+        </div>
+
+        <!-- ── HR ATTRITION ── -->
+        <div class="project-card reveal" data-category="tableau">
+            <div class="project-header">
+                <div class="project-title">
+                    <h3>HR Attrition &amp; Workforce Retention Analysis</h3>
+                    <div class="project-company">Personal Project | People Analytics &amp; Data Visualization</div>
+                </div>
+                <div class="project-date">IBM HR Analytics Sample Dataset (Kaggle)</div>
+            </div>
+
+            <div class="project-tags">
+                <span class="tag">SQL</span>
+                <span class="tag">Tableau</span>
+                <span class="tag">Dashboarding</span>
+                <span class="tag">KPI Design</span>
+            </div>
+
+            <div class="project-content">
+                <div class="slideshow" id="ss-hr">
+                    <div class="slide active" data-ss="hr">
+                        <img src="assets/hr-dash-1.jpg" alt="HR Executive Overview" class="gallery-image" onclick="openLightbox(this.src)">
+                        <p class="slide-caption">Executive Overview — Overall Attrition Rate &amp; Workforce KPIs</p>
+                    </div>
+                    <div class="slide" data-ss="hr">
+                        <img src="assets/hr-dash-2.jpg" alt="Attrition Driver Analysis" class="gallery-image" onclick="openLightbox(this.src)">
+                        <p class="slide-caption">Attrition Driver Analysis — Overtime, Compensation &amp; Satisfaction</p>
+                    </div>
+                    <div class="slide" data-ss="hr">
+                        <img src="assets/hr-dash-3.jpg" alt="Retention Curve" class="gallery-image" onclick="openLightbox(this.src)">
+                        <p class="slide-caption">Retention Curve — Tenure &amp; Career Lifecycle Risk</p>
+                    </div>
+                    <div class="slide" data-ss="hr">
+                        <img src="assets/hr-dash-4.jpg" alt="Department Heatmap" class="gallery-image" onclick="openLightbox(this.src)">
+                        <p class="slide-caption">Department-Role Heatmap — Turnover Concentration by Function</p>
+                    </div>
+                    <div class="slide-nav">
+                        <button class="slide-btn" onclick="moveSlide('hr', -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slide-btn" onclick="moveSlide('hr',  1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="project-link-box">
+                    <a href="https://public.tableau.com/views/HRAttritionPeopleAnalytics/ExecutiveOverview?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="project-link-btn">
+                        <i class="fas fa-external-link-alt"></i> View Interactive Tableau Dashboard
                     </a>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-number">01</div>
-                <h2 class="section-title">About</h2>
-                <div class="section-divider"></div>
-            </div>
+                <h4>Challenge</h4>
+                <p>Analyze <span class="strong-number">1,470</span> employee records from IBM's publicly available HR Analytics sample dataset to evaluate organizational attrition patterns and workforce stability across departments and roles. Determine how compensation, workload, tenure, and satisfaction influence turnover concentration within a structured corporate environment.</p>
 
-            <div class="about-grid">
-                <div class="reveal">
-                    <div class="about-image-wrapper">
-                        <img src="assets/profile.jpg" alt="Janav Rithik" class="about-image">
-                    </div>
-                </div>
+                <h4>Approach</h4>
+                <ul>
+                    <li>Transformed and enriched workforce data using SQL, engineering analytical features such as salary quartiles (NTILE), tenure bands, and promotion gap indicators for structured analysis.</li>
+                    <li>Designed executive KPIs including Total Employees, Attrited Employees, and Attrition Rate to ensure consistent metric definitions across dashboards.</li>
+                    <li>Developed interactive Tableau dashboards (executive overview, driver analysis, retention curve, department-role heatmap) to identify structural and lifecycle-based attrition risk patterns.</li>
+                </ul>
 
-                <div class="about-text reveal">
-                    <p>I am a business analyst and data specialist focused on transforming complex data into actionable insights that drive strategic decision-making. I recently completed my MSc in Business Administration with a specialization in Business Analytics at TIAS School for Business and Society.</p>
-
-                    <p>My expertise spans interactive dashboarding and data visualization using tools like Tableau, SQL, and Excel. I've worked on a thesis project to analyze 21,000+ customer reviews using NLP, built supply chain optimization dashboards during my internship, and delivered insights supporting business growth.</p>
-
-                    <div class="about-facts">
-                        <div class="fact-item">
-                            <div class="fact-label">Location</div>
-                            <div class="fact-value">Amstelveen, Netherlands</div>
-                        </div>
-                        <div class="fact-item">
-                            <div class="fact-label">Education</div>
-                            <div class="fact-value">MSc Business Admin (TIAS)</div>
-                        </div>
-                        <div class="fact-item">
-                            <div class="fact-label">Languages</div>
-                            <div class="fact-value">English, Tamil</div>
-                        </div>
-                        <div class="fact-item">
-                            <div class="fact-label">Award</div>
-                            <div class="fact-value">TIAS Team Work Scholarship</div>
-                        </div>
-                    </div>
+                <div class="project-impact">
+                    <div class="impact-label">Key Result</div>
+                    <div class="impact-text">Identified a <span class="strong-number">16.1%</span> overall attrition rate, with turnover heavily concentrated in early-tenure employees and specific high-risk roles. Confirmed overtime and lower compensation tiers as primary structural risk factors influencing workforce retention within the sample dataset.</div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section projects">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-number">02</div>
-                <h2 class="section-title">Featured Work</h2>
-                <div class="section-divider"></div>
+        <!-- ── BRAZIL ── -->
+        <div class="project-card reveal" data-category="tableau">
+            <div class="project-header">
+                <div class="project-title">
+                    <h3>Brazil E-Commerce Sales &amp; Fulfillment Performance Analysis</h3>
+                    <div class="project-company">Personal Project | Data Visualization</div>
+                </div>
+                <div class="project-date">2016–2018 Transaction Data</div>
             </div>
-
-            <div class="filter-buttons reveal">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="python">Python & NLP</button>
-                <button class="filter-btn" data-filter="tableau">Tableau & SQL</button>
+            <div class="project-tags">
+                <span class="tag">Tableau</span><span class="tag">Dashboarding</span><span class="tag">KPI Design</span>
             </div>
-<!-- Project 1 -->
-<div class="project-card reveal" data-category="tableau">
-    <div class="project-header">
-        <div class="project-title">
-            <h3>Brazil E-Commerce Sales & Fulfillment Performance Analysis</h3>
-            <div class="project-company">Personal Project | Data Visualization</div>
-        </div>
-        <div class="project-date">2016 – 2018 Transaction Data</div>
-    </div>
-
-    <div class="project-tags">
-        <span class="tag">Tableau</span>
-        <span class="tag">Dashboarding</span>
-        <span class="tag">KPI Design</span>
-    </div>
-
-    <div class="project-content">
-
-        <!-- Dashboard Image -->
-        <div class="project-gallery">
-            <img src="assets/brazil-dash.jpg" 
-                 alt="Olist Brazil Market Performance Dashboard" 
-                 class="gallery-image" 
-                 onclick="openLightbox(this.src)">
-            <p class="slide-caption">
-                Olist Brazil Market Performance Dashboard — Revenue, AOV & Delivery Insights Across Brazilian States
-            </p>
-        </div>
-
-        <!-- Tableau Public Link Button -->
-        <div class="project-link-box">
-            <a href="https://public.tableau.com/views/BrazilSalesDashboard/Dashboard1?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" 
-               target="_blank" 
-               class="project-link-btn">
-                <i class="fas fa-external-link-alt"></i>
-                View Interactive Tableau Dashboard
-            </a>
-        </div>
-
-        <h4>Challenge</h4>
-        <p>
-            Analyze <span class="strong-number">100,000+</span> Brazilian e-commerce transactions to evaluate national sales performance and operational delivery efficiency across states. 
-            Determine how revenue concentration and fulfillment speed vary geographically within Brazil’s online marketplace.
-        </p>
-
-        <h4>Approach</h4>
-        <ul>
-            <li>Integrated six relational datasets using Tableau’s logical data model to ensure accurate transaction-level aggregation.</li>
-            <li>Engineered KPIs including Total Revenue, Average Order Value (AOV), and Average Delivery Time to assess both financial and operational performance.</li>
-            <li>Developed interactive visualizations (geo heatmap, monthly revenue trends, state-level delivery comparison) to identify regional and seasonal patterns.</li>
-        </ul>
-
-        <div class="project-impact">
-            <div class="impact-label">Key Result</div>
-            <div class="impact-text">
-                Identified São Paulo (SP) as the dominant revenue-generating state and confirmed measurable regional differences in delivery performance across Brazil’s e-commerce landscape.
+            <div class="project-content">
+                <div class="project-gallery">
+                    <img src="assets/brazil-dash.jpg" alt="Brazil E-Commerce Dashboard" class="gallery-image" onclick="openLightbox(this.src)">
+                    <p class="slide-caption">Olist Brazil Market Performance Dashboard — Revenue, AOV &amp; Delivery Insights Across Brazilian States</p>
+                </div>
+                <div class="project-link-box">
+                    <a href="https://public.tableau.com/views/BrazilSalesDashboard/Dashboard1?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="project-link-btn">
+                        <i class="fas fa-external-link-alt"></i> View Interactive Tableau Dashboard
+                    </a>
+                </div>
+                <h4>Challenge</h4>
+                <p>Analyze <span class="strong-number">100,000+</span> Brazilian e-commerce transactions to evaluate national sales performance and operational delivery efficiency across states.</p>
+                <h4>Approach</h4>
+                <ul>
+                    <li>Integrated six relational datasets using Tableau's logical data model to ensure accurate transaction-level aggregation.</li>
+                    <li>Engineered KPIs including Total Revenue, Average Order Value (AOV), and Average Delivery Time to assess both financial and operational performance.</li>
+                    <li>Developed interactive visualizations (geo heatmap, monthly revenue trends, state-level delivery comparison) to identify regional and seasonal patterns.</li>
+                </ul>
+                <div class="project-impact">
+                    <div class="impact-label">Key Result</div>
+                    <div class="impact-text">Identified São Paulo (SP) as the dominant revenue-generating state and confirmed measurable regional differences in delivery performance across Brazil's e-commerce landscape.</div>
+                </div>
             </div>
         </div>
 
+        <!-- ── THESIS ── -->
+        <div class="project-card reveal" data-category="python">
+            <div class="project-header">
+                <div class="project-title">
+                    <h3>Text Analysis of Online Banking Reviews</h3>
+                    <div class="project-company">Master's Thesis @ TIAS School for Business and Society</div>
+                </div>
+                <div class="project-date">Jun 2025 – Aug 2025</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Python (NLTK)</span><span class="tag">TF-IDF</span><span class="tag">Regression (OLS)</span>
+            </div>
+            <div class="project-content">
+                <h4>Challenge</h4>
+                <p>Identify the key service and emotional factors influencing customer satisfaction in digital banking using large-scale online reviews.</p>
+                <h4>Approach</h4>
+                <ul>
+                    <li>Collected and analyzed <span class="strong-number">21,956</span> reviews from Trustpilot.</li>
+                    <li>Implemented TF-IDF feature extraction and lexicon-based analysis (NRC Emotion Lexicon).</li>
+                </ul>
+                <div class="project-impact">
+                    <div class="impact-label">Key Result</div>
+                    <div class="impact-text">Emotional sentiment factors explained <span class="strong-number">49.7%</span> of customer satisfaction variance.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── KRAMP ── -->
+        <div class="project-card reveal" data-category="tableau">
+            <div class="project-header">
+                <div class="project-title">
+                    <h3>Supply Chain Optimization Dashboard</h3>
+                    <div class="project-company">Internship @ KRAMP</div>
+                </div>
+                <div class="project-date">Sep 2025 – Dec 2025</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Tableau Desktop</span><span class="tag">SQL</span><span class="tag">BigQuery</span>
+            </div>
+            <div class="project-content">
+                <h4>Challenge</h4>
+                <p>Supply chain specialists lacked visibility into Minimum Order Quantity (MOQ) optimization across suppliers.</p>
+                <h4>Approach</h4>
+                <ul>
+                    <li>Designed an interactive Tableau dashboard pulling real-time data from BigQuery.</li>
+                    <li>Engineered SQL queries to aggregate supplier performance metrics.</li>
+                </ul>
+                <div class="project-impact">
+                    <div class="impact-label">Key Result</div>
+                    <div class="impact-text">Adopted by the supply chain team to manage supplier relationships and optimize MOQs efficiently.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── SALES ── -->
+        <div class="project-card reveal" data-category="tableau">
+            <div class="project-header">
+                <div class="project-title">
+                    <h3>Multi-Region Sales Performance Dashboard</h3>
+                    <div class="project-company">Academic Project | Executive KPI Dashboard</div>
+                </div>
+                <div class="project-date">Transactional Sales Dataset</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Tableau</span><span class="tag">KPI Dashboarding</span><span class="tag">Trend Analysis</span>
+            </div>
+            <div class="project-content">
+                <div class="project-gallery">
+                    <img src="assets/sales-dash.jpg" alt="Sales Performance Dashboard" class="gallery-image" onclick="openLightbox(this.src)">
+                    <p class="slide-caption">Executive Sales Dashboard — Revenue, Category Contribution &amp; Regional Trends</p>
+                </div>
+                <div class="project-link-box">
+                    <a href="https://public.tableau.com/views/SalesDashboard_17711652693010/Dashboard1?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="project-link-btn">
+                        <i class="fas fa-external-link-alt"></i> View Interactive Tableau Dashboard
+                    </a>
+                </div>
+                <h4>Challenge</h4>
+                <p>Evaluate overall sales performance across product categories and regions to identify key revenue drivers and detect temporal performance trends.</p>
+                <h4>Approach</h4>
+                <ul>
+                    <li>Designed executive KPI cards for Total Revenue, Units Sold, and Average Order Value (AOV).</li>
+                    <li>Analyzed revenue contribution by product category to identify top-performing segments.</li>
+                    <li>Compared regional performance via tabular breakdown and implemented monthly trend analysis with regression line.</li>
+                </ul>
+                <div class="project-impact">
+                    <div class="impact-label">Key Result</div>
+                    <div class="impact-text">Identified Electronics as the primary revenue driver (≈43%) and North America as the highest-performing region (€36.8K), while revealing a downward trend in monthly revenue.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── NBA ── -->
+        <div class="project-card reveal" data-category="tableau python">
+            <div class="project-header">
+                <div class="project-title">
+                    <h3>NBA Player Performance &amp; Analytics</h3>
+                    <div class="project-company">Academic Project | Data Visualization</div>
+                </div>
+                <div class="project-date">2023 Season Data</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Tableau</span><span class="tag">Data Cleaning</span><span class="tag">Correlation Analysis</span>
+            </div>
+            <div class="project-content">
+                <div class="slideshow" id="ss-nba">
+                    <div class="slide active" data-ss="nba">
+                        <img src="assets/nba-dash-1.jpg" alt="NBA Dashboard 1" class="gallery-image" onclick="openLightbox(this.src)">
+                        <p class="slide-caption">Points scored by players in different positions</p>
+                    </div>
+                    <div class="slide" data-ss="nba">
+                        <img src="assets/nba-dash-2.jpg" alt="NBA Dashboard 2" class="gallery-image" onclick="openLightbox(this.src)">
+                        <p class="slide-caption">Assists by players in different positions</p>
+                    </div>
+                    <div class="slide" data-ss="nba">
+                        <img src="assets/nba-dash-3.jpg" alt="NBA Dashboard 3" class="gallery-image" onclick="openLightbox(this.src)">
+                        <p class="slide-caption">Correlation between Blocks and Steals of Players and their Personal Fouls</p>
+                    </div>
+                    <div class="slide" data-ss="nba">
+                        <img src="assets/nba-dash-4.jpg" alt="NBA Dashboard 4" class="gallery-image" onclick="openLightbox(this.src)">
+                        <p class="slide-caption">Double Doubles obtained by Players in Different Positions</p>
+                    </div>
+                    <div class="slide" data-ss="nba">
+                        <img src="assets/nba-dash-5.jpg" alt="NBA Dashboard 5" class="gallery-image" onclick="openLightbox(this.src)">
+                        <p class="slide-caption">Triple Doubles obtained by Players in Different Positions</p>
+                    </div>
+                    <div class="slide-nav">
+                        <button class="slide-btn" onclick="moveSlide('nba', -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slide-btn" onclick="moveSlide('nba',  1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <h4>Challenge</h4>
+                <p>Analyze the 2022-2023 NBA regular season to determine how playing styles (offensive vs defensive) correlate with personal fouls and versatility across positions.</p>
+                <h4>Approach</h4>
+                <ul>
+                    <li>Cleaned and aggregated a dataset of <span class="strong-number">539</span> players using Tableau Prep Builder.</li>
+                    <li>Created scatter plots to identify a moderate correlation (R-Squared: 0.59) between defensive aggression (steals/blocks) and personal fouls.</li>
+                    <li>Analyzed "Triple Double" versatility, identifying Point Guards as the most versatile position.</li>
+                </ul>
+                <div class="project-impact">
+                    <div class="impact-label">Key Result</div>
+                    <div class="impact-text">Proven statistical significance (P-value &lt; 0.0001) linking aggressive defensive playstyles to higher foul counts.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── EMPLOYMENT ── -->
+        <div class="project-card reveal" data-category="tableau">
+            <div class="project-header">
+                <div class="project-title">
+                    <h3>Employment Growth Analysis Dashboard</h3>
+                    <div class="project-company">Data Visualization Project | Tableau</div>
+                </div>
+                <div class="project-date">2011–2014 Data</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Tableau Desktop</span><span class="tag">KPIs &amp; Heatmaps</span><span class="tag">Industry Analytics</span>
+            </div>
+            <div class="project-content">
+                <div class="project-gallery">
+                    <img src="assets/employment-dash.jpg" alt="Employment Growth Dashboard" class="gallery-image" onclick="openLightbox(this.src)">
+                    <p class="slide-caption">Great Britain Employment Growth Dashboard</p>
+                </div>
+                <h4>Challenge</h4>
+                <p>Analyze employment changes across major Great Britain cities (2011–2014) to identify leading growth industries.</p>
+                <h4>Approach</h4>
+                <ul>
+                    <li>Built an interactive Tableau dashboard using 1-digit SIC industry data.</li>
+                    <li>Conducted city-level and industry-level growth comparison using KPIs, diverging bar charts, and heatmaps.</li>
+                </ul>
+                <div class="project-impact">
+                    <div class="impact-label">Key Result</div>
+                    <div class="impact-text">Identified <span class="strong-number">443K</span> net job growth, with Professional, Scientific &amp; Technical Activities emerging as the highest-growth industry across cities.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── FIFA ── -->
+        <div class="project-card reveal" data-category="python">
+            <div class="project-header">
+                <div class="project-title">
+                    <h3>FIFA Player Growth Analytics</h3>
+                    <div class="project-company">Team Project @ TIAS</div>
+                </div>
+                <div class="project-date">Feb 2025</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Deep Learning</span><span class="tag">Predictive Modeling</span>
+            </div>
+            <div class="project-content">
+                <h4>Challenge</h4>
+                <p>Analyze historical FIFA player data to uncover growth patterns and recommend scouting strategies.</p>
+                <h4>Approach</h4>
+                <ul>
+                    <li>Analyzed <span class="strong-number">17,954</span> SoFIFA records spanning multiple seasons.</li>
+                    <li>Built Deep Learning models achieving <span class="strong-number">98%</span> accuracy.</li>
+                </ul>
+                <div class="project-impact">
+                    <div class="impact-label">Key Result</div>
+                    <div class="impact-text">Delivered scouting recommendations enabling data-driven acquisition decisions.</div>
+                </div>
+            </div>
+        </div>
+
     </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="section">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-number">03</div>
+            <h2 class="section-title">Experience</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="timeline-header">
+                    <img src="assets/kramp-logo.jpg" alt="KRAMP" class="company-logo">
+                    <div class="timeline-title">
+                        <h3>Business Analyst Intern</h3>
+                        <div class="timeline-company">KRAMP | Netherlands</div>
+                        <div class="timeline-date">Sep 2025 – Dec 2025</div>
+                    </div>
+                </div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Built Tableau dashboards via BigQuery for supply chain optimization.</li>
+                        <li>Conducted demand forecasting analytics to assist planners.</li>
+                        <li>Extracted and validated dealer potential data for accuracy.</li>
+                        <li>Collaborated with supply chain specialists to define requirements.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-header">
+                    <div class="timeline-title">
+                        <h3>Finance &amp; Accounting Intern</h3>
+                        <div class="timeline-company">KPM Processing Mill | India</div>
+                        <div class="timeline-date">Jun 2022 – Jul 2022</div>
+                    </div>
+                </div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Prepared weekly financial reports for executive decision-making.</li>
+                        <li>Entered accounting entries using Tally ERP.</li>
+                        <li>Audited past entries and identified discrepancies for accuracy.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="section education">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-number">04</div>
+            <h2 class="section-title">Education</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="education-grid">
+            <div class="education-card reveal">
+                <div class="education-header">
+                    <img src="assets/tias-logo.png" alt="TIAS" class="education-logo">
+                    <div class="education-title">
+                        <h3>MSc Business Administration</h3>
+                        <div class="education-school">TIAS School for Business and Society</div>
+                    </div>
+                </div>
+                <div class="education-details">
+                    <p>Specialization: Business Analytics</p>
+                    <p>Sep 2024 – Dec 2025 | Netherlands</p>
+                </div>
+            </div>
+
+            <div class="education-card reveal">
+                <div class="education-header">
+                    <img src="assets/christ-logo.jpg" alt="Christ University" class="education-logo">
+                    <div class="education-title">
+                        <h3>Bachelor of Commerce</h3>
+                        <div class="education-school">Christ University</div>
+                    </div>
+                </div>
+                <div class="education-details">
+                    <p>Specialization: Banking &amp; Insurance</p>
+                    <p>Jun 2020 – May 2023 | India</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: var(--space-xl);">
+            <div class="timeline-item reveal">
+                <div class="timeline-header">
+                    <img src="assets/tias-logo.png" alt="TIAS" class="company-logo">
+                    <div class="timeline-title">
+                        <h3>TIAS Student Association</h3>
+                        <div class="timeline-company">Member | Utrecht, Netherlands</div>
+                        <div class="timeline-date">Oct 2024 – Aug 2025</div>
+                    </div>
+                </div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Collaborated with a 6-member, multicultural team to plan and deliver student events.</li>
+                        <li>Led collaborative planning sessions for cultural events and implemented a task management website.</li>
+                        <li>Organized events like Lunar New Year Celebrations and Golf outings to promote cultural diversity and student engagement.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-number">05</div>
+            <h2 class="section-title">Skills &amp; Expertise</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-category reveal">
+                <h3><i class="fas fa-chart-line"></i> Data, Analytics &amp; BI</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">SQL (SQL Server, Google BigQuery, PostgreSQL)</span>
+                    <span class="skill-tag">Tableau Desktop</span>
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">Python (Basic / Academic)</span>
+                    <span class="skill-tag">Microsoft Excel</span>
+                    <span class="skill-tag">Microsoft PowerPoint</span>
+                </div>
+            </div>
+
+            <div class="skill-category reveal">
+                <h3><i class="fas fa-users"></i> Professional Skills</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Clear Written &amp; Verbal Communication</span>
+                    <span class="skill-tag">Results-driven</span>
+                    <span class="skill-tag">Dashboarding</span>
+                    <span class="skill-tag">Presentation Skills</span>
+                    <span class="skill-tag">Structured Problem Solving</span>
+                    <span class="skill-tag">Analytical Skills</span>
+                    <span class="skill-tag">Time Management</span>
+                    <span class="skill-tag">Attention to Detail</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section contact">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-number">06</div>
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="contact-content reveal">
+            <p class="contact-text">I am actively seeking entry-level roles in the Netherlands.</p>
+            <div class="contact-email">
+                <span class="email-address">janavrithiksj@gmail.com</span>
+                <button class="copy-btn" id="copyBtn" onclick="copyEmail()">Copy</button>
+            </div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/janav-rithik-1502421b3/" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:janavrithiksj@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Back to top -->
+<button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img src="" alt="Full size" id="lightboxImg">
 </div>
 
+<script>
+    // NAV toggle
+    const navToggle = document.getElementById('navToggle');
+    const navMenu   = document.getElementById('navMenu');
+    navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    navMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+    }));
 
-            <!-- Project 2 -->
-            <div class="project-card reveal" data-category="python">
-                <div class="project-header">
-                    <div class="project-title">
-                        <h3>Text Analysis of Online Banking Reviews</h3>
-                        <div class="project-company">Master's Thesis @ TIAS School for Business and Society</div>
-                    </div>
-                    <div class="project-date">Jun 2025 - Aug 2025</div>
-                </div>
+    // Scroll: nav shadow + back-to-top + active link
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        document.querySelector('.nav').classList.toggle('scrolled', y > 100);
+        backToTopBtn.classList.toggle('visible', y > 400);
 
-                <div class="project-tags">
-                    <span class="tag">Python (NLTK)</span>
-                    <span class="tag">TF-IDF</span>
-                    <span class="tag">Regression (OLS)</span>
-                </div>
-
-                <div class="project-content">
-                    <h4>Challenge</h4>
-                    <p>Identify the key service and emotional factors influencing customer satisfaction in digital banking using large-scale online reviews.</p>
-
-                    <h4>Approach</h4>
-                    <ul>
-                        <li>Collected and analyzed <span class="strong-number">21,956</span> reviews from Trustpilot.</li>
-                        <li>Implemented TF-IDF feature extraction and lexicon-based analysis (NRC Emotion Lexicon).</li>
-                    </ul>
-
-                    <div class="project-impact">
-                        <div class="impact-label">Key Result</div>
-                        <div class="impact-text">Emotional sentiment factors explained 49.7% of customer satisfaction variance.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="project-card reveal" data-category="tableau">
-                <div class="project-header">
-                    <div class="project-title">
-                        <h3>Supply Chain Optimization Dashboard</h3>
-                        <div class="project-company">Internship @ KRAMP</div>
-                    </div>
-                    <div class="project-date">Sep 2025 - Dec 2025</div>
-                </div>
-
-                <div class="project-tags">
-                    <span class="tag">Tableau Desktop</span>
-                    <span class="tag">SQL</span>
-                    <span class="tag">BigQuery</span>
-                </div>
-
-                <div class="project-content">
-                    <h4>Challenge</h4>
-                    <p>Supply chain specialists lacked visibility into Minimum Order Quantity (MOQ) optimization across suppliers.</p>
-
-                    <h4>Approach</h4>
-                    <ul>
-                        <li>Designed an interactive Tableau dashboard pulling real-time data from BigQuery.</li>
-                        <li>Engineered SQL queries to aggregate supplier performance metrics.</li>
-                    </ul>
-
-                    <div class="project-impact">
-                        <div class="impact-label">Key Result</div>
-                        <div class="impact-text">Adopted by the supply chain team to manage supplier relationships and optimize MOQs efficiently.</div>
-                    </div>
-                </div>
-            </div>
-<!-- Sales Performance Dashboard -->
-<div class="project-card reveal" data-category="tableau">
-    <div class="project-header">
-        <div class="project-title">
-            <h3>Multi-Region Sales Performance Dashboard</h3>
-            <div class="project-company">Academic Project | Executive KPI Dashboard</div>
-        </div>
-        <div class="project-date">Transactional Sales Dataset</div>
-    </div>
-
-    <div class="project-tags">
-        <span class="tag">Tableau</span>
-        <span class="tag">KPI Dashboarding</span>
-        <span class="tag">Trend Analysis</span>
-    </div>
-
-    <div class="project-content">
-
-        <div class="project-gallery">
-            <img src="assets/sales-dash.jpg" 
-                 alt="Sales Performance Dashboard" 
-                 class="gallery-image" 
-                 onclick="openLightbox(this.src)">
-            <p class="slide-caption">
-                Executive Sales Dashboard — Revenue, Category Contribution & Regional Trends
-            </p>
-        </div>
-
-        <!-- Tableau Public Link Button -->
-        <div class="project-link-box">
-            <a href="https://public.tableau.com/views/SalesDashboard_17711652693010/Dashboard1?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" 
-               target="_blank" 
-               class="project-link-btn">
-                <i class="fas fa-external-link-alt"></i>
-                View Interactive Tableau Dashboard
-            </a>
-        </div>
-
-        <h4>Challenge</h4>
-        <p>
-            Evaluate overall sales performance across product categories and regions to identify key revenue drivers and detect temporal performance trends.
-        </p>
-
-        <h4>Approach</h4>
-        <ul>
-            <li>Designed executive KPI cards for Total Revenue, Units Sold, and Average Order Value (AOV).</li>
-            <li>Analyzed revenue contribution by product category to identify top-performing segments.</li>
-            <li>Compared regional performance via tabular breakdown and implemented monthly trend analysis with regression line.</li>
-        </ul>
-
-        <div class="project-impact">
-            <div class="impact-label">Key Result</div>
-            <div class="impact-text">
-                Identified Electronics as the primary revenue driver (≈43%) and North America as the highest-performing region (€36.8K), while revealing a downward trend in monthly revenue.
-            </div>
-        </div>
-
-    </div>
-</div>
-
-            <!-- Project 4 -->
-            <div class="project-card reveal" data-category="tableau python">
-                <div class="project-header">
-                    <div class="project-title">
-                        <h3>NBA Player Performance & Analytics</h3>
-                        <div class="project-company">Academic Project | Data Visualization</div>
-                    </div>
-                    <div class="project-date">2023 Season Data</div>
-                </div>
-
-                <div class="project-tags">
-                    <span class="tag">Tableau</span>
-                    <span class="tag">Data Cleaning</span>
-                    <span class="tag">Correlation Analysis</span>
-                </div>
-
-                <div class="project-content">
-                    <div class="slideshow">
-                        <div class="slide active">
-                            <img src="assets/nba-dash-1.jpg" alt="NBA Dashboard 1" class="gallery-image" onclick="openLightbox(this.src)">
-                            <p class="slide-caption">Points scored by players in different positions</p>
-                        </div>
-                        <div class="slide">
-                            <img src="assets/nba-dash-2.jpg" alt="NBA Dashboard 2" class="gallery-image" onclick="openLightbox(this.src)">
-                            <p class="slide-caption">Assists by players in different positions</p>
-                        </div>
-                        <div class="slide">
-                            <img src="assets/nba-dash-3.jpg" alt="NBA Dashboard 3" class="gallery-image" onclick="openLightbox(this.src)">
-                            <p class="slide-caption">Correlation between Blocks and Steals of Players and their Personal Fouls</p>
-                        </div>
-                        <div class="slide">
-                            <img src="assets/nba-dash-4.jpg" alt="NBA Dashboard 4" class="gallery-image" onclick="openLightbox(this.src)">
-                            <p class="slide-caption">Double Doubles obtained by Players in Different Positions</p>
-                        </div>
-                        <div class="slide">
-                            <img src="assets/nba-dash-5.jpg" alt="NBA Dashboard 5" class="gallery-image" onclick="openLightbox(this.src)">
-                            <p class="slide-caption">Triple Doubles obtained by Players in Different Positions</p>
-                        </div>
-                        <div class="slide-nav">
-                            <button class="slide-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-                            <button class="slide-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-
-                    <h4>Challenge</h4>
-                    <p>Analyze the 2022-2023 NBA regular season to determine how playing styles (offensive vs defensive) correlate with personal fouls and versatility across positions.</p>
-
-                    <h4>Approach</h4>
-                    <ul>
-                        <li>Cleaned and aggregated a dataset of <span class="strong-number">539</span> players using Tableau Prep Builder.</li>
-                        <li>Created scatter plots to identify a moderate correlation (R-Squared: 0.59) between defensive aggression (steals/blocks) and personal fouls.</li>
-                        <li>Analyzed "Triple Double" versatility, identifying Point Guards as the most versatile position.</li>
-                    </ul>
-
-                    <div class="project-impact">
-                        <div class="impact-label">Key Result</div>
-                        <div class="impact-text">Proven statistical significance (P-value &lt; 0.0001) linking aggressive defensive playstyles to higher foul counts.</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project 5 -->
-            <div class="project-card reveal" data-category="tableau">
-                <div class="project-header">
-                    <div class="project-title">
-                        <h3>Employment Growth Analysis Dashboard</h3>
-                        <div class="project-company">Data Visualization Project | Tableau</div>
-                    </div>
-                    <div class="project-date">2011 - 2014 Data</div>
-                </div>
-
-                <div class="project-tags">
-                    <span class="tag">Tableau Desktop</span>
-                    <span class="tag">KPIs & Heatmaps</span>
-                    <span class="tag">Industry Analytics</span>
-                </div>
-
-                <div class="project-content">
-                    <div class="project-gallery">
-                        <img src="assets/employment-dash.jpg" alt="Employment Growth Dashboard" class="gallery-image" onclick="openLightbox(this.src)">
-                        <p class="slide-caption">Great Britain Employment Growth Dashboard</p>
-                    </div>
-
-                    <h4>Challenge</h4>
-                    <p>Analyze employment changes across major Great Britain cities (2011–2014) to identify leading growth industries.</p>
-
-                    <h4>Approach</h4>
-                    <ul>
-                        <li>Built an interactive Tableau dashboard using 1-digit SIC industry data.</li>
-                        <li>Conducted city-level and industry-level growth comparison using KPIs, diverging bar charts, and heatmaps.</li>
-                    </ul>
-
-                    <div class="project-impact">
-                        <div class="impact-label">Key Result</div>
-                        <div class="impact-text">Identified <span class="strong-number">443K</span> net job growth, with Professional, Scientific & Technical Activities emerging as the highest-growth industry across cities.</div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Project 6 -->
-            <div class="project-card reveal" data-category="python">
-                <div class="project-header">
-                    <div class="project-title">
-                        <h3>FIFA Player Growth Analytics</h3>
-                        <div class="project-company">Team Project @ TIAS</div>
-                    </div>
-                    <div class="project-date">Feb 2025</div>
-                </div>
-
-                <div class="project-tags">
-                    <span class="tag">Deep Learning</span>
-                    <span class="tag">Predictive Modeling</span>
-                </div>
-
-                <div class="project-content">
-                    <h4>Challenge</h4>
-                    <p>Analyze historical FIFA player data to uncover growth patterns and recommend scouting strategies.</p>
-
-                    <h4>Approach</h4>
-                    <ul>
-                        <li>Analyzed <span class="strong-number">17,954</span> SoFIFA records spanning multiple seasons.</li>
-                        <li>Built Deep Learning models achieving <span class="strong-number">98%</span> accuracy.</li>
-                    </ul>
-
-                    <div class="project-impact">
-                        <div class="impact-label">Key Result</div>
-                        <div class="impact-text">Delivered scouting recommendations enabling data-driven acquisition decisions.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-number">03</div>
-                <h2 class="section-title">Experience</h2>
-                <div class="section-divider"></div>
-            </div>
-
-            <div class="timeline">
-                <div class="timeline-item reveal">
-                    <div class="timeline-header">
-                        <img src="assets/kramp-logo.jpg" alt="KRAMP" class="company-logo">
-                        <div class="timeline-title">
-                            <h3>Business Analyst Intern</h3>
-                            <div class="timeline-company">KRAMP | Netherlands</div>
-                            <div class="timeline-date">Sep 2025 - Dec 2025</div>
-                        </div>
-                    </div>
-                    <div class="timeline-content">
-                        <ul>
-                            <li>Built Tableau dashboards via BigQuery for supply chain optimization.</li>
-                            <li>Conducted demand forecasting analytics to assist planners.</li>
-                            <li>Extracted and validated dealer potential data for accuracy.</li>
-                            <li>Collaborated with supply chain specialists to define requirements.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-header">
-                        <div class="timeline-title">
-                            <h3>Finance & Accounting Intern</h3>
-                            <div class="timeline-company">KPM Processing Mill | India</div>
-                            <div class="timeline-date">Jun 2022 - Jul 2022</div>
-                        </div>
-                    </div>
-                    <div class="timeline-content">
-                        <ul>
-                            <li>Prepared weekly financial reports for executive decision-making.</li>
-                            <li>Entered accounting entries using Tally ERP.</li>
-                            <li>Audited past entries and identified discrepancies for accuracy.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="section education">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-number">04</div>
-                <h2 class="section-title">Education</h2>
-                <div class="section-divider"></div>
-            </div>
-
-            <div class="education-grid">
-                <div class="education-card reveal">
-                    <div class="education-header">
-                        <img src="assets/tias-logo.png" alt="TIAS" class="education-logo">
-                        <div class="education-title">
-                            <h3>MSc Business Administration</h3>
-                            <div class="education-school">TIAS School for Business and Society</div>
-                        </div>
-                    </div>
-                    <div class="education-details">
-                        <p>Specialization: Business Analytics</p>
-                        <p>Sep 2024 - Dec 2025 | Netherlands</p>
-                    </div>
-                </div>
-
-                <div class="education-card reveal">
-                    <div class="education-header">
-                        <img src="assets/christ-logo.jpg" alt="Christ University" class="education-logo">
-                        <div class="education-title">
-                            <h3>Bachelor of Commerce</h3>
-                            <div class="education-school">Christ University</div>
-                        </div>
-                    </div>
-                    <div class="education-details">
-                        <p>Specialization: Banking & Insurance</p>
-                        <p>Jun 2020 - May 2023 | India</p>
-                    </div>
-                </div>
-            </div>
-
-            <div style="margin-top: var(--space-xl);">
-                <div class="timeline-item reveal">
-                    <div class="timeline-header">
-                        <img src="assets/tias-logo.png" alt="TIAS" class="company-logo">
-                        <div class="timeline-title">
-                            <h3>TIAS Student Association</h3>
-                            <div class="timeline-company">Member | Utrecht, Netherlands</div>
-                            <div class="timeline-date">Oct 2024 - Aug 2025</div>
-                        </div>
-                    </div>
-                    <div class="timeline-content">
-                        <ul>
-                            <li>Collaborated with a 6-member, multicultural team to plan and deliver student events.</li>
-                            <li>Led collaborative planning sessions for cultural events and implemented a task management website.</li>
-                            <li>Organized events like Lunar New Year Celebrations and Golf outings to promote cultural diversity and student engagement.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-number">05</div>
-                <h2 class="section-title">Skills & Expertise</h2>
-                <div class="section-divider"></div>
-            </div>
-
-            <div class="skills-grid">
-                <div class="skill-category reveal">
-                    <h3><i class="fas fa-chart-line"></i> Data, Analytics & BI</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">SQL (SQL Server, Google BigQuery, PostgreSQL)</span>
-                        <span class="skill-tag">Tableau Desktop</span>
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">Python (Basic / Academic)</span>
-                        <span class="skill-tag">Microsoft Excel</span>
-                        <span class="skill-tag">Microsoft PowerPoint</span>
-                    </div>
-                </div>
-
-                <div class="skill-category reveal">
-                    <h3><i class="fas fa-users"></i> Professional Skills</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Clear Written & Verbal Communication</span>
-                        <span class="skill-tag">Results-driven</span>
-                        <span class="skill-tag">Dashboarding</span>
-                        <span class="skill-tag">Presentation Skills</span>
-                        <span class="skill-tag">Structured Problem Solving</span>
-                        <span class="skill-tag">Analytical Skills</span>
-                        <span class="skill-tag">Time Management</span>
-                        <span class="skill-tag">Attention to Detail</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-number">06</div>
-                <h2 class="section-title">Let's Connect</h2>
-                <div class="section-divider"></div>
-            </div>
-
-            <div class="contact-content reveal">
-                <p class="contact-text">I am actively seeking entry-level roles in the Netherlands.</p>
-
-                <div class="contact-email">
-                    <span class="email-address">janavrithiksj@gmail.com</span>
-                    <button class="copy-btn" onclick="copyEmail()">Copy</button>
-                </div>
-
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/janav-rithik-1502421b3/" target="_blank" class="social-link">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="mailto:janavrithiksj@gmail.com" class="social-link">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Back to Top -->
-    <a class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-
-    
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <img src="" alt="Full size image" id="lightboxImg">
-    </div>
-
-    <script>
-        // Navigation
-        const navToggle = document.querySelector('.nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        const navLinks = document.querySelectorAll('.nav-link');
-    
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-    
-        // 👇 ADD IT HERE
-        const backToTopBtn = document.getElementById('backToTop');
-    
-        if (backToTopBtn) {
-            backToTopBtn.addEventListener('click', function () {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+        document.querySelectorAll('section[id]').forEach(sec => {
+            const top = sec.offsetTop - 150;
+            if (y >= top && y < top + sec.offsetHeight) {
+                document.querySelectorAll('.nav-link').forEach(l => {
+                    l.classList.toggle('active', l.getAttribute('href') === '#' + sec.id);
                 });
-            });
-        }
-
-        // Active navigation on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.nav');
-            const backToTop = document.getElementById('backToTop');
-            const sections = document.querySelectorAll('section[id]');
-            
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-                backToTop.classList.add('visible');
-            } else {
-                nav.classList.remove('scrolled');
-                backToTop.classList.remove('visible');
             }
+        });
+    });
+    backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-            // Highlight active section
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    function checkReveal() {
+        reveals.forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 150) {
+                el.classList.add('active');
+            }
+        });
+    }
+    window.addEventListener('scroll', checkReveal);
+    checkReveal();
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
+    // Project filter
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const f = btn.dataset.filter;
+            document.querySelectorAll('.project-card').forEach(card => {
+                const show = f === 'all' || card.dataset.category.includes(f);
+                if (show) {
+                    card.style.display = 'block';
+                    setTimeout(() => { card.style.opacity = '1'; card.style.transform = ''; }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    setTimeout(() => { card.style.display = 'none'; }, 300);
                 }
             });
         });
+    });
 
-        // Reveal animation
-        const reveals = document.querySelectorAll('.reveal');
-        
-        function checkReveal() {
-            reveals.forEach(reveal => {
-                const windowHeight = window.innerHeight;
-                const elementTop = reveal.getBoundingClientRect().top;
-                const elementVisible = 150;
+    // Per-slideshow state
+    const ssState = {};
 
-                if (elementTop < windowHeight - elementVisible) {
-                    reveal.classList.add('active');
-                }
-            });
-        }
+    function moveSlide(id, dir) {
+        if (ssState[id] === undefined) ssState[id] = 0;
+        const slides = document.querySelectorAll(`#ss-${id} .slide`);
+        slides[ssState[id]].classList.remove('active');
+        ssState[id] = (ssState[id] + dir + slides.length) % slides.length;
+        slides[ssState[id]].classList.add('active');
+    }
 
-        window.addEventListener('scroll', checkReveal);
-        checkReveal();
+    // Lightbox
+    function openLightbox(src) {
+        document.getElementById('lightboxImg').src = src;
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-        // Filter projects
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const projectCards = document.querySelectorAll('.project-card');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const filter = btn.getAttribute('data-filter');
-
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                projectCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
-                        card.style.display = 'block';
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, 10);
-                    } else {
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(30px)';
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 300);
-                    }
-                });
-            });
+    // Copy email
+    function copyEmail() {
+        navigator.clipboard.writeText('janavrithiksj@gmail.com').then(() => {
+            const btn = document.getElementById('copyBtn');
+            btn.textContent = 'Copied!'; btn.classList.add('copied');
+            setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
         });
+    }
 
-        // Slideshow
-        let slideIndex = 0;
-
-        function changeSlide(n) {
-            const slides = document.querySelectorAll('.slide');
-            slideIndex += n;
-
-            if (slideIndex >= slides.length) {
-                slideIndex = 0;
-            }
-            if (slideIndex < 0) {
-                slideIndex = slides.length - 1;
-            }
-
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[slideIndex].classList.add('active');
-        }
-
-        // Lightbox
-        function openLightbox(src) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            lightboxImg.src = src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Copy email
-        function copyEmail() {
-            const email = 'janavrithiksj@gmail.com';
-            const btn = document.querySelector('.copy-btn');
-            
-            navigator.clipboard.writeText(email).then(() => {
-                btn.textContent = 'Copied!';
-                btn.classList.add('copied');
-                setTimeout(() => {
-                    btn.textContent = 'Copy';
-                    btn.classList.remove('copied');
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy:', err);
-            });
-        }
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            const t = document.querySelector(a.getAttribute('href'));
+            if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
-    </script>
+    });
+</script>
 </body>
 </html>

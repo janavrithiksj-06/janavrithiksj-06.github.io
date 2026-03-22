@@ -224,9 +224,158 @@
 
         .project-card {
             background: var(--warm-grey); padding: var(--space-lg); margin-bottom: var(--space-lg);
-            border-left: 4px solid var(--burgundy); transition: all 0.5s var(--ease-smooth);
+            border-left: 4px solid var(--burgundy); transition: box-shadow 0.3s var(--ease-smooth);
         }
-        .project-card:hover { transform: translateX(10px); box-shadow: -10px 10px 40px rgba(0, 0, 0, 0.08); }
+        .project-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); }
+
+        /* ── PER-PROJECT COLOUR ACCENTS ── */
+        .project-card.hr-card     { border-left-color: #3d5a99; background: linear-gradient(to right, rgba(61,90,153,0.04), var(--warm-grey)); }
+        .project-card.hr-card h4  { color: #3d5a99; }
+        .project-card.hr-card .project-company { color: #3d5a99; }
+        .project-card.hr-card .tag { color: #3d5a99; border-color: #3d5a99; }
+        .project-card.hr-card .project-link-btn { background: #3d5a99; border-color: #3d5a99; }
+        .project-card.hr-card .project-link-btn:hover { background: #2e4475; box-shadow: 0 10px 30px rgba(61,90,153,0.3); }
+        .project-card.hr-card .project-impact { background: linear-gradient(135deg, rgba(61,90,153,0.05), rgba(201,169,97,0.05)); border-left-color: #3d5a99; }
+        .project-card.hr-card .impact-label { color: #3d5a99; }
+        .project-card.hr-card li::before { color: #3d5a99; }
+        .project-card.hr-card .slide-btn { background: #3d5a99; }
+        .project-card.hr-card .slide-btn:hover { background: #2e4475; }
+        .project-card.hr-card .strong-number { color: #3d5a99; }
+
+        .project-card.kramp-card     { border-left-color: #2a7f6f; background: linear-gradient(to right, rgba(42,127,111,0.04), var(--warm-grey)); }
+        .project-card.kramp-card h4  { color: #2a7f6f; }
+        .project-card.kramp-card .project-company { color: #2a7f6f; }
+        .project-card.kramp-card .tag { color: #2a7f6f; border-color: #2a7f6f; }
+        .project-card.kramp-card .project-impact { background: linear-gradient(135deg, rgba(42,127,111,0.05), rgba(201,169,97,0.05)); border-left-color: #2a7f6f; }
+        .project-card.kramp-card .impact-label { color: #2a7f6f; }
+        .project-card.kramp-card li::before { color: #2a7f6f; }
+        .project-card.kramp-card .strong-number { color: #2a7f6f; }
+
+        .project-card.brazil-card     { border-left-color: #c97d2a; background: linear-gradient(to right, rgba(201,125,42,0.04), var(--warm-grey)); }
+        .project-card.brazil-card h4  { color: #c97d2a; }
+        .project-card.brazil-card .project-company { color: #c97d2a; }
+        .project-card.brazil-card .tag { color: #c97d2a; border-color: #c97d2a; }
+        .project-card.brazil-card .project-link-btn { background: #c97d2a; border-color: #c97d2a; }
+        .project-card.brazil-card .project-link-btn:hover { background: #a86522; box-shadow: 0 10px 30px rgba(201,125,42,0.3); }
+        .project-card.brazil-card .project-impact { background: linear-gradient(135deg, rgba(201,125,42,0.05), rgba(201,169,97,0.05)); border-left-color: #c97d2a; }
+        .project-card.brazil-card .impact-label { color: #c97d2a; }
+        .project-card.brazil-card li::before { color: #c97d2a; }
+        .project-card.brazil-card .strong-number { color: #c97d2a; }
+
+        .project-card.thesis-card     { border-left-color: #6b4fa0; background: linear-gradient(to right, rgba(107,79,160,0.04), var(--warm-grey)); }
+        .project-card.thesis-card h4  { color: #6b4fa0; }
+        .project-card.thesis-card .project-company { color: #6b4fa0; }
+        .project-card.thesis-card .tag { color: #6b4fa0; border-color: #6b4fa0; }
+        .project-card.thesis-card .project-impact { background: linear-gradient(135deg, rgba(107,79,160,0.05), rgba(201,169,97,0.05)); border-left-color: #6b4fa0; }
+        .project-card.thesis-card .impact-label { color: #6b4fa0; }
+        .project-card.thesis-card li::before { color: #6b4fa0; }
+        .project-card.thesis-card .strong-number { color: #6b4fa0; }
+
+        .project-card.sales-card     { border-left-color: #2a7a3b; background: linear-gradient(to right, rgba(42,122,59,0.04), var(--warm-grey)); }
+        .project-card.sales-card h4  { color: #2a7a3b; }
+        .project-card.sales-card .project-company { color: #2a7a3b; }
+        .project-card.sales-card .tag { color: #2a7a3b; border-color: #2a7a3b; }
+        .project-card.sales-card .project-link-btn { background: #2a7a3b; border-color: #2a7a3b; }
+        .project-card.sales-card .project-link-btn:hover { background: #1f5c2c; box-shadow: 0 10px 30px rgba(42,122,59,0.3); }
+        .project-card.sales-card .project-impact { background: linear-gradient(135deg, rgba(42,122,59,0.05), rgba(201,169,97,0.05)); border-left-color: #2a7a3b; }
+        .project-card.sales-card .impact-label { color: #2a7a3b; }
+        .project-card.sales-card li::before { color: #2a7a3b; }
+        .project-card.sales-card .strong-number { color: #2a7a3b; }
+
+        .project-card.nba-card     { border-left-color: #c96515; background: linear-gradient(to right, rgba(201,101,21,0.04), var(--warm-grey)); }
+        .project-card.nba-card h4  { color: #c96515; }
+        .project-card.nba-card .project-company { color: #c96515; }
+        .project-card.nba-card .tag { color: #c96515; border-color: #c96515; }
+        .project-card.nba-card .project-impact { background: linear-gradient(135deg, rgba(201,101,21,0.05), rgba(201,169,97,0.05)); border-left-color: #c96515; }
+        .project-card.nba-card .impact-label { color: #c96515; }
+        .project-card.nba-card li::before { color: #c96515; }
+        .project-card.nba-card .slide-btn { background: #c96515; }
+        .project-card.nba-card .slide-btn:hover { background: #a35010; }
+        .project-card.nba-card .strong-number { color: #c96515; }
+
+        .project-card.employment-card     { border-left-color: #2c5f7f; background: linear-gradient(to right, rgba(44,95,127,0.04), var(--warm-grey)); }
+        .project-card.employment-card h4  { color: #2c5f7f; }
+        .project-card.employment-card .project-company { color: #2c5f7f; }
+        .project-card.employment-card .tag { color: #2c5f7f; border-color: #2c5f7f; }
+        .project-card.employment-card .project-impact { background: linear-gradient(135deg, rgba(44,95,127,0.05), rgba(201,169,97,0.05)); border-left-color: #2c5f7f; }
+        .project-card.employment-card .impact-label { color: #2c5f7f; }
+        .project-card.employment-card li::before { color: #2c5f7f; }
+        .project-card.employment-card .strong-number { color: #2c5f7f; }
+
+        .project-card.fifa-card     { border-left-color: #b8960c; background: linear-gradient(to right, rgba(184,150,12,0.04), var(--warm-grey)); }
+        .project-card.fifa-card h4  { color: #b8960c; }
+        .project-card.fifa-card .project-company { color: #b8960c; }
+        .project-card.fifa-card .tag { color: #b8960c; border-color: #b8960c; }
+        .project-card.fifa-card .project-impact { background: linear-gradient(135deg, rgba(184,150,12,0.05), rgba(201,169,97,0.05)); border-left-color: #b8960c; }
+        .project-card.fifa-card .impact-label { color: #b8960c; }
+        .project-card.fifa-card li::before { color: #b8960c; }
+        .project-card.fifa-card .strong-number { color: #b8960c; }
+
+        /* F1 project card — subtle red accent, same light background as others */
+        .project-card.f1-card {
+            background: linear-gradient(to right, rgba(225,6,0,0.04), var(--warm-grey));
+            border-left: 4px solid #e10600;
+            position: relative;
+        }
+        .project-card.f1-card h4 { color: #e10600; }
+        .project-card.f1-card .project-company { color: #e10600; }
+        .project-card.f1-card li::before { color: #e10600; }
+        .project-card.f1-card .strong-number { color: #e10600; }
+
+        .project-card.f1-card .tag {
+            color: #e10600;
+            border-color: #e10600;
+        }
+
+        .f1-kpis {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: var(--space-md) 0;
+        }
+        @media (max-width: 768px) { .f1-kpis { grid-template-columns: repeat(2, 1fr); } }
+
+        .f1-kpi {
+            background: white;
+            border: 1px solid rgba(225,6,0,0.2);
+            padding: 1rem;
+            text-align: center;
+        }
+        .f1-kpi-label {
+            font-family: var(--font-ui);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            margin-bottom: 0.4rem;
+        }
+        .f1-kpi-value {
+            font-family: var(--font-ui);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--rich-black);
+        }
+        .f1-kpi-value span { color: #e10600; }
+
+        .project-card.f1-card .project-impact {
+            background: linear-gradient(135deg, rgba(225,6,0,0.05), rgba(201,169,97,0.05));
+            border-left: 4px solid #e10600;
+        }
+        .project-card.f1-card .impact-label { color: #e10600; }
+
+        .project-card.f1-card .project-link-btn {
+            background: #e10600;
+            border-color: #e10600;
+            color: white;
+        }
+        .project-card.f1-card .project-link-btn:hover {
+            background: #b50500;
+            box-shadow: 0 10px 30px rgba(225,6,0,0.3);
+        }
+
+        .project-card.f1-card .slide-btn { background: #e10600; }
+        .project-card.f1-card .slide-btn:hover { background: #b50500; }
 
         @media (max-width: 600px) { .project-card { padding: var(--space-md); } }
 
@@ -269,10 +418,13 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         .slide-caption { text-align: center; font-size: 0.875rem; color: var(--charcoal); margin-top: var(--space-sm); font-style: italic; }
+        .project-card.f1-card .slide-caption { color: #888; }
 
         .slide-nav { display: flex; justify-content: center; gap: 1rem; margin-top: var(--space-sm); }
         .slide-btn { width: 40px; height: 40px; background: var(--burgundy); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s var(--ease-smooth); }
         .slide-btn:hover { background: var(--deep-burgundy); transform: scale(1.1); }
+        .project-card.f1-card .slide-btn { background: #c0392b; }
+        .project-card.f1-card .slide-btn:hover { background: #a93226; }
 
         /* Lightbox */
         .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center; cursor: zoom-out; }
@@ -350,10 +502,10 @@
         .back-to-top:hover { background: var(--deep-burgundy); transform: translateY(-5px); }
 
         /* ── REVEAL ── */
-        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s var(--ease-smooth); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal { opacity: 1; transform: translateY(0); transition: all 0.8s var(--ease-smooth); }
 
         .strong-number { font-weight: 700; color: var(--burgundy); }
+        .project-card.f1-card .strong-number { color: #c0392b; }
 
         @media (max-width: 600px) {
             .contact-email { flex-direction: column; gap: 0.75rem; text-align: center; }
@@ -445,14 +597,16 @@
             <div class="section-divider"></div>
         </div>
 
-        <div class="filter-buttons reveal">
+        <div class="filter-buttons">
             <button class="filter-btn active" data-filter="all">All Projects</button>
             <button class="filter-btn" data-filter="python">Python &amp; NLP</button>
             <button class="filter-btn" data-filter="tableau">Tableau &amp; SQL</button>
         </div>
 
+
+
         <!-- ── HR ATTRITION ── -->
-        <div class="project-card reveal" data-category="tableau">
+        <div class="project-card hr-card" data-category="tableau">
             <div class="project-header">
                 <div class="project-title">
                     <h3>HR Attrition &amp; Workforce Retention Analysis</h3>
@@ -515,8 +669,77 @@
             </div>
         </div>
 
+                <!-- ── F1 PIT STOP ── -->
+                <div class="project-card f1-card" data-category="tableau python">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <h3>F1 Pit Stop Strategy Explorer</h3>
+                            <div class="project-company">Personal Project | Sports Analytics &amp; Data Engineering</div>
+                        </div>
+                        <div class="project-date">2024 Season · Jolpica-F1 API</div>
+                    </div>
+        
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Pandas</span>
+                        <span class="tag">REST API</span>
+                        <span class="tag">Tableau</span>
+                        <span class="tag">Data Cleaning</span>
+                        <span class="tag">Sports Analytics</span>
+                    </div>
+        
+                    <div class="f1-kpis">
+                        <div class="f1-kpi">
+                            <div class="f1-kpi-label">Fastest Pit Crew</div>
+                            <div class="f1-kpi-value"><span>McLaren</span> — 23.76s</div>
+                        </div>
+                        <div class="f1-kpi">
+                            <div class="f1-kpi-label">Longest Single Stop</div>
+                            <div class="f1-kpi-value"><span>58.98s</span></div>
+                        </div>
+                        <div class="f1-kpi">
+                            <div class="f1-kpi-label">Most Stops Race</div>
+                            <div class="f1-kpi-value"><span>Abu Dhabi</span> GP</div>
+                        </div>
+                        <div class="f1-kpi">
+                            <div class="f1-kpi-label">Latest Pitter</div>
+                            <div class="f1-kpi-value"><span>Mercedes</span> — lap 25.4</div>
+                        </div>
+                    </div>
+        
+                    <div class="project-content">
+                        <div class="project-gallery">
+                            <img src="assets/f1-dash.jpg" alt="F1 Pit Stop Strategy Dashboard" class="gallery-image" onclick="openLightbox(this.src)" style="border-color: rgba(225,6,0,0.3);">
+                            <p class="slide-caption">F1 Pit Stop Analysis Dashboard — 2024 Season · 611 pit stops across 24 races</p>
+                        </div>
+        
+                        <div class="project-link-box">
+                            <a href="https://public.tableau.com/views/F1PitStopAnalysis_17741967091150/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="project-link-btn">
+                                <i class="fas fa-external-link-alt"></i> View Interactive Tableau Dashboard
+                            </a>
+                        </div>
+        
+                        <h4>Challenge</h4>
+                        <p>Analyze pit stop strategy across all <span class="strong-number">24 races</span> of the 2024 Formula 1 season to uncover how timing, speed, and number of stops influence finishing position — building the full data pipeline from a live API to an interactive dashboard.</p>
+        
+                        <h4>Approach</h4>
+                        <ul>
+                            <li>Engineered a Python data pipeline that called the Jolpica-F1 REST API <span class="strong-number">48 times</span> (24 rounds × 2 endpoints) to collect pit stop and race result data for all drivers across the season.</li>
+                            <li>Cleaned and validated real-world data anomalies including red flag period distortions (Japan, Monaco), non-standard duration formats, and missing values — reducing the raw dataset from 660 to 611 reliable records.</li>
+                            <li>Merged pit stop and race result datasets on driver and round keys, enriching each stop with team name and finishing position for cross-dimensional analysis.</li>
+                            <li>Built a Tableau LOD expression (<code>FIXED [Driver Id], [Race Name] : MAX([Stop])</code>) to correctly calculate total stops per driver per race without row-level aggregation errors.</li>
+                            <li>Designed a dark-themed dashboard with official F1 team colours, circuit outline background, KPI tiles, and an interactive team filter.</li>
+                        </ul>
+        
+                        <div class="project-impact">
+                            <div class="impact-label">Key Finding</div>
+                            <div class="impact-text">1-stop strategies yielded an average finishing position of <span class="strong-number">9.4</span> vs <span class="strong-number">16.1</span> for 3-stop strategies — confirming that reactive multi-stop strategies significantly correlated with worse race outcomes in the 2024 season. McLaren led pit crew speed at 23.76s average, consistent with their championship-winning pace.</div>
+                        </div>
+                    </div>
+                </div>
+
         <!-- ── KRAMP ── -->
-        <div class="project-card reveal" data-category="tableau">
+        <div class="project-card kramp-card" data-category="tableau">
             <div class="project-header">
                 <div class="project-title">
                     <h3>Supply Chain Optimization Dashboard</h3>
@@ -543,7 +766,7 @@
         </div>
         
         <!-- ── BRAZIL ── -->
-        <div class="project-card reveal" data-category="tableau">
+        <div class="project-card brazil-card" data-category="tableau">
             <div class="project-header">
                 <div class="project-title">
                     <h3>Brazil E-Commerce Sales &amp; Fulfillment Performance Analysis</h3>
@@ -580,7 +803,7 @@
         </div>
 
         <!-- ── THESIS ── -->
-        <div class="project-card reveal" data-category="python">
+        <div class="project-card thesis-card" data-category="python">
             <div class="project-header">
                 <div class="project-title">
                     <h3>Text Analysis of Online Banking Reviews</h3>
@@ -606,9 +829,8 @@
             </div>
         </div>
 
-
         <!-- ── SALES ── -->
-        <div class="project-card reveal" data-category="tableau">
+        <div class="project-card sales-card" data-category="tableau">
             <div class="project-header">
                 <div class="project-title">
                     <h3>Multi-Region Sales Performance Dashboard</h3>
@@ -645,7 +867,7 @@
         </div>
 
         <!-- ── NBA ── -->
-        <div class="project-card reveal" data-category="tableau python">
+        <div class="project-card nba-card" data-category="tableau">
             <div class="project-header">
                 <div class="project-title">
                     <h3>NBA Player Performance &amp; Analytics</h3>
@@ -699,7 +921,7 @@
         </div>
 
         <!-- ── EMPLOYMENT ── -->
-        <div class="project-card reveal" data-category="tableau">
+        <div class="project-card employment-card" data-category="tableau">
             <div class="project-header">
                 <div class="project-title">
                     <h3>Employment Growth Analysis Dashboard</h3>
@@ -730,7 +952,7 @@
         </div>
 
         <!-- ── FIFA ── -->
-        <div class="project-card reveal" data-category="python">
+        <div class="project-card fifa-card" data-category="python">
             <div class="project-header">
                 <div class="project-title">
                     <h3>FIFA Player Growth Analytics</h3>
@@ -886,6 +1108,7 @@
                     <span class="skill-tag">Tableau Desktop</span>
                     <span class="skill-tag">Power BI</span>
                     <span class="skill-tag">Python (Pandas, Matplotlib)</span>
+                    <span class="skill-tag">REST APIs</span>
                     <span class="skill-tag">Microsoft Excel</span>
                     <span class="skill-tag">Microsoft PowerPoint</span>
                 </div>
@@ -920,12 +1143,12 @@
         <div class="contact-content reveal">
             <p class="contact-text">I am actively seeking entry-level roles in the Netherlands.</p>
             <div class="contact-email">
-                <span class="email-address">janavrithiksj@gmail.com</span>
+                <span class="email-address"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4e242f202f383c273a2627253d240e29232f2722602d2123">[email&#160;protected]</a></span>
                 <button class="copy-btn" id="copyBtn" onclick="copyEmail()">Copy</button>
             </div>
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/janav-rithik-1502421b3/" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                <a href="mailto:janavrithiksj@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+                <a href="/cdn-cgi/l/email-protection#701a111e110602190418191b031a30171d11191c5e131f1d" class="social-link"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </div>
@@ -943,24 +1166,31 @@
     // NAV toggle
     const navToggle = document.getElementById('navToggle');
     const navMenu   = document.getElementById('navMenu');
+
     navToggle.addEventListener('click', () => {
         navToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
     });
-    navMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
-        navToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-    }));
+
+    navMenu.querySelectorAll('a').forEach(l => {
+        l.addEventListener('click', () => {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
 
     // Scroll: nav shadow + back-to-top + active link
     const backToTopBtn = document.getElementById('backToTop');
+
     window.addEventListener('scroll', () => {
         const y = window.scrollY;
+
         document.querySelector('.nav').classList.toggle('scrolled', y > 100);
         backToTopBtn.classList.toggle('visible', y > 400);
 
         document.querySelectorAll('section[id]').forEach(sec => {
             const top = sec.offsetTop - 150;
+
             if (y >= top && y < top + sec.offsetHeight) {
                 document.querySelectorAll('.nav-link').forEach(l => {
                     l.classList.toggle('active', l.getAttribute('href') === '#' + sec.id);
@@ -968,48 +1198,59 @@
             }
         });
     });
-    backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     // Reveal on scroll
     const reveals = document.querySelectorAll('.reveal');
+
     function checkReveal() {
         reveals.forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight - 150) {
+            if (el.getBoundingClientRect().top < window.innerHeight + 50) {
                 el.classList.add('active');
             }
         });
     }
+
     window.addEventListener('scroll', checkReveal);
+    setTimeout(checkReveal, 100);
     checkReveal();
 
-    // Project filter
+    // 🔥 PROJECT FILTER (FIXED & WORKING)
     document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', function () {
+
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const f = btn.dataset.filter;
+            this.classList.add('active');
+
+            const filter = this.getAttribute('data-filter').toLowerCase();
+
             document.querySelectorAll('.project-card').forEach(card => {
-                const show = f === 'all' || card.dataset.category.includes(f);
-                if (show) {
+                const cat = (card.getAttribute('data-category') || '').toLowerCase().split(' ');
+
+                if (filter === 'all' || cat.includes(filter)) {
                     card.style.display = 'block';
-                    setTimeout(() => { card.style.opacity = '1'; card.style.transform = ''; }, 10);
                 } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(30px)';
-                    setTimeout(() => { card.style.display = 'none'; }, 300);
+                    card.style.display = 'none';
                 }
             });
         });
     });
 
-    // Per-slideshow state
+    // Slideshow state
     const ssState = {};
 
     function moveSlide(id, dir) {
         if (ssState[id] === undefined) ssState[id] = 0;
+
         const slides = document.querySelectorAll(`#ss-${id} .slide`);
+
         slides[ssState[id]].classList.remove('active');
+
         ssState[id] = (ssState[id] + dir + slides.length) % slides.length;
+
         slides[ssState[id]].classList.add('active');
     }
 
@@ -1019,29 +1260,42 @@
         document.getElementById('lightbox').classList.add('active');
         document.body.style.overflow = 'hidden';
     }
+
     function closeLightbox() {
         document.getElementById('lightbox').classList.remove('active');
         document.body.style.overflow = '';
     }
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeLightbox();
+    });
 
     // Copy email
     function copyEmail() {
         navigator.clipboard.writeText('janavrithiksj@gmail.com').then(() => {
             const btn = document.getElementById('copyBtn');
-            btn.textContent = 'Copied!'; btn.classList.add('copied');
-            setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+
+            setTimeout(() => {
+                btn.textContent = 'Copy';
+                btn.classList.remove('copied');
+            }, 2000);
         });
     }
 
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
+    // ✅ FIXED SMOOTH SCROLL (this was your broken part)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            const t = document.querySelector(a.getAttribute('href'));
-            if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            const target = document.querySelector(this.getAttribute('href'));
+
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 </script>
-</body>
-</html>

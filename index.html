@@ -727,7 +727,7 @@
                             <li>Engineered a Python data pipeline that called the Jolpica-F1 REST API <span class="strong-number">48 times</span> (24 rounds × 2 endpoints) to collect pit stop and race result data for all drivers across the season.</li>
                             <li>Cleaned and validated real-world data anomalies including red flag period distortions (Japan, Monaco), non-standard duration formats, and missing values — reducing the raw dataset from 660 to 611 reliable records.</li>
                             <li>Merged pit stop and race result datasets on driver and round keys, enriching each stop with team name and finishing position for cross-dimensional analysis.</li>
-                            <li>Built a Tableau LOD expression (<code>FIXED [Driver Id], [Race Name] : MAX([Stop])</code>) to correctly calculate total stops per driver per race without row-level aggregation errors.</li>
+                            <li>Built a Tableau LOD expression (FIXED [Driver Id], [Race Name] : MAX([Stop])) to correctly calculate total stops per driver per race without row-level aggregation errors.</li>
                             <li>Designed a dark-themed dashboard with official F1 team colours, circuit outline background, KPI tiles, and an interactive team filter.</li>
                         </ul>
         
